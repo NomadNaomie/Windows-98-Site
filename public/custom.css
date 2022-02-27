@@ -1,0 +1,528 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }  
+  .desktop{
+      position:relative;
+      width: 100vw;
+      height: 95.5vh;
+  }
+#start-menu {
+    background: linear-gradient(90deg, #b5b5b5, #b5b5b5);
+    padding: .1vw;
+    display: flex;
+    width:100vw;
+    height: 4vh;
+    align-items: center
+}
+
+#start-menu.inactive {
+    background: linear-gradient(90deg, grey, #b5b5b5)
+}
+#time{
+    pointer-events: none;
+    color:#111;
+    font-size: 2vh;
+    min-height: 4vh;
+    min-width: 4vw;
+    max-height: 4vh;
+    max-width: 4vw;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+    padding-right: 4vw;
+    margin: .1vw;
+}
+#start-menu-text {
+    font-weight: 4vh;
+    color: #333;
+    letter-spacing: 0;
+    justify-content:end;
+    margin-left: auto;
+    padding-right: .1vw;
+
+}
+
+#start-menu-controls {
+    display: flex;
+    justify-content: left;
+    padding: .5vh .1vw;
+
+}
+
+#start-menu-controls button {
+    padding: .5vh 1vw;
+    display: block;
+    min-height: 3vh;
+    min-width: 4vw;
+    max-height: 3vh;
+    max-width: 4vw;
+}
+
+#start-menu-controls button:active {
+    padding: .5vh .1vw;
+}
+
+#start-menu-controls button:focus {
+    outline: none
+}
+#startMen{
+    display: flex;
+    min-height: fit-content;
+    padding: 0;
+    max-width: 10vw;
+    max-height: fit-content;
+    position:relative;
+    z-index: 1000;position: absolute;
+    top: 79vh;
+    left: 0%;
+    margin-bottom: 5vh;
+}
+#startMen.off{
+    display: none;
+}
+#start-menu-body button{
+    align-content: flex-start;
+    display: inline-flex;
+    max-width: 9vw;
+    min-width: 9vw;
+    max-height: 5vh;
+    min-height: 5vh;
+}
+#start-menu-controls button[aria-label=Start] {
+    background-image: url("starbutton.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 5vw;
+    max-height: 4vh;
+    max-width: 5vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    
+}
+#start-menu-controls #TwitterLaunch {
+    background-image: url("twitterVP.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+
+}
+#start-menu-controls #ConvoyMapLaunch {
+    background-image: url("givesendgoicon.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+
+}
+#start-menu-controls #HearthLaunch {
+    background-image: url("hearth.jpg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+
+}
+#start-menu-controls button[aria-label=ParlerHeatMapLaunch] {
+    background-image: url("parlericon.webp");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+
+}
+#start-menu-controls #AboutMeLaunch {
+    background-image: url("LiLogo.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+}
+button.on{
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+}
+#start-menu-controls button[aria-label=GitHubButton] {
+    background-image: url("githubVP.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+}
+#start-menu-controls #AboutMeLaunch {
+    background-image: url("AnimeV2.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+}
+#desktop-wallpaper{
+    background-image: url("https://i.imgur.com/3nnU3c7.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 95.5vh;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+}
+#start-menu.inactive{
+    filter: grayscale(100%); 
+    filter: contrast(10%);
+}
+#desktop-wallpaper.inactive{
+    filter: grayscale(100%); 
+    filter: contrast(10%);
+    
+}
+#confirmWindow{
+    width: 40vw;z-index: 999;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 50%;
+}
+#twitterFeed{
+    position:absolute;
+    width: 15vw;z-index: 7;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 80%;
+}
+#aboutMe{
+    position:absolute;
+    width: 20vw;z-index: 2;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 15%;
+    height:auto;
+    left: 15%;
+}
+#a1win{
+    position:absolute;
+    z-index: 3;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 75%;
+}
+.a1{
+    height: 45vh;
+    width: auto;
+}
+.a2{
+    height: 55vh;
+    width: auto;
+}
+#a1{
+    height: 45vh;
+    width: auto;
+    overflow: hidden;
+}
+#a1-body{
+    display:inline-block;
+    overflow: hidden;
+}
+#a1-body:hover #a1{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+         overflow: hidden;
+         filter: blur(5px);
+         -webkit-filter: blur(5px);
+         -moz-filter: blur(5px);
+         -o-filter: blur(5px);
+         -ms-filter: blur(5px);
+    transform: scale(1.33);
+}
+#a1-body:hover{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+    filter: grayscale(0.87);
+    -webkit-filter: grayscale(0.87);
+    -moz-filter: grayscale(0.87);
+    -o-filter: grayscale(0.87);
+    -ms-filter: grayscale(0.87);
+}
+#hearth-btn{
+    display: none;
+    opacity: 0;
+}
+#a1-body:hover #hearth-btn{
+    display: block;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 1;
+}
+#a2{
+    height: 55vh;
+    width: auto;
+    overflow: hidden;
+}
+#a2-body{
+    display: inline-block;
+    overflow: hidden;  
+}
+#a2-body:hover #a2{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+         overflow: hidden;
+         filter: blur(5px);
+         -webkit-filter: blur(5px);
+         -moz-filter: blur(5px);
+         -o-filter: blur(5px);
+         -ms-filter: blur(5px);
+    transform: scale(1.33);
+}
+#a2-body:hover{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+    filter: grayscale(0.87);
+    -webkit-filter: grayscale(0.87);
+    -moz-filter: grayscale(0.87);
+    -o-filter: grayscale(0.87);
+    -ms-filter: grayscale(0.87);
+}
+#givesendgo-btn{
+    display: none;
+    opacity: 0;
+}
+#a2-body:hover #givesendgo-btn{
+    display: block;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 1;
+}
+#a3{
+    height: 45vh;
+    width: auto;
+    overflow: hidden;
+}
+#a3-body{
+    display: inline-block; 
+    overflow: hidden;  
+}
+
+#a3-body:hover #a3{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+         overflow: hidden;
+         filter: blur(5px);
+         -webkit-filter: blur(5px);
+         -moz-filter: blur(5px);
+         -o-filter: blur(5px);
+         -ms-filter: blur(5px);
+    transform: scale(1.33);
+}
+#heatmap-btn{
+    display: none;
+    opacity: 0;
+}
+#a3-body:hover #heatmap-btn{
+    display: block;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 1;
+}
+    
+#a3-body:hover{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+      -o-transition: all 2s ease;
+     -ms-transition: all 2s ease;
+         transition: all 2s ease;
+    filter: grayscale(0.87);
+    -webkit-filter: grayscale(0.87);
+    -moz-filter: grayscale(0.87);
+    -o-filter: grayscale(0.87);
+    -ms-filter: grayscale(0.87);
+}
+#a2win{
+    position:absolute;
+    z-index: 4;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+#a3win{
+    position:absolute;
+    z-index: 5;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 70%;
+    left: 20%;
+    overflow: hidden;
+
+}
+#a3win.on{
+    display:none;
+}
+#a2win.on{
+    display:none;
+}
+#a1win.on{
+    display:none;
+}
+
+#twitterFeed{
+    max-height: 42vh;
+}
+#tweet-body{
+    max-height: 30vh;
+
+}
+
+.tweet{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.tweet .b{
+    float: right;
+}
+.tweet .p{ 
+    float:right;
+}
+.tweet .pfp{
+    height: 4vh;
+    width:4vh;
+    margin-right:.5vw;
+    float:left
+}
+#start-menu-body button{
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+#start-menu-body button p{
+    padding-left: 1vw;
+}
+#start-menu-body button .siteCo{
+    height: 4vh;
+    width:auto;
+    float:left;
+
+}
+
+.pfp{
+    height: 20vh;
+    width:auto;
+    margin-right:.5vw;
+    float:left
+}
+.tweet .a{
+    float:right;
+}
+.tweet:nth-of-type(even) {
+    background: lightgrey;
+}
+.tweet:nth-of-type(odd) {
+    background: darkgray;
+  }
+
+.window-body.off{
+    display:none;
+  }
+  .window-body{
+    display:block;
+  }
+  .window{
+    display:block;
+  }
+.window.off{
+    display:none;
+  }
+  #tweet-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+     user-scalable=0' >
+    <title>Naomie's Site</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <link rel="stylesheet" href="custom.css" />
+</head>
+
+<body>
+    <div class = "desktop" id='desktop'>
+        <div class="window" id="confirmWindow">
+            <div class="title-bar">
+              <div class="title-bar-text">Confirmation</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body" id="contWin">
+              <h4 style="text-align: center;">Welcome to Naomie's Site</h1>
+                <p style="text-align: center;color:#444;">Please click to continue</p>
+                <button id='confBtn' style="margin: 0 auto; display: block;">Continue</button>
+            </div>
+          </div>
+          <div id='twitterFeed' class="window" class="inactive">
+            <div  id="twitterDrag" class="title-bar" >
+              <div class="title-bar-text" >@NomadNaomie - Twitter</div>
+              <div id="twitter-controls" class="title-bar-controls">
+                <button aria-label="Minimize" id="twitter-min"></button>
+                <button aria-label="Close" id="twitter-close"></button>
+              </div>
+            </div>
+            <div class="window-body" id="tweet-body">
+            </div>
+          </div>
+          <div id='a1win' class="window" class="inactive">
+            <div  id="a1title" class="title-bar" >
+              <div class="title-bar-text" >Hearth Guild Demo Site</div>
+              <div id="a1-controls" class="title-bar-controls">
+                <button aria-label="Minimize" id="a1-min"></button>
+                <button aria-label="Close" id="a1-close"></button>
+              </div>
+            </div>
+            <div class="window-body" id="a1-body">
+              <img src='hearthdemo.png' id='a1'></img>
+              <button onclick="window.location.href='/hearth'" type="button" id="hearth-btn">Hearth Guild Demo Site</button>
+            </div>
+          </div>
+          <div id='a2win' class="window" class="inactive">
+            <div  id="a2title" class="title-bar" >
+              <div class="title-bar-text">GiveSendGo Freedom Convoy 2022 Donation Leak Map</div>
+              <div id="a2-controls" class="title-bar-controls">
+                <button aria-label="Minimize" id="a2-min"></button>
+                <button aria-label="Close" id="a2-close"></button>
+              </div>
+            </div>
+            <div class="window-body" id="a2-body">
+              <img src='givesendgo.png' id='a2'></img>
+              <button onclick="window.location.href='/map'" type="button" id="givesendgo-btn">GiveSendGo Mapped Data</button>
+            </div>
+          </div>
+          <div id='a3win' class="window" class="inactive">
+            <div  id="a3title" class="title-bar" >
+              <div class="title-bar-text" >January 6th Parler GeoTagged video Heatmap</div>
+              <div id="a3-controls" class="title-bar-controls">
+                <button aria-label="Minimize" id="a3-min"></button>
+                <button aria-label="Close" id="a3-close"></button>
+              </div>
+            </div>
+            <div class="window-body" id="a3-body">
+              <img src='parlerNotGif.png' id='a3'></img>
+              <button onclick="window.location.href='/parler'" type="button" id="heatmap-btn">Parler Heatmap</button>
+            </div>
+          </div>
+         <div id="desktop-wallpaper"class="inactive" ></div>
+    </div>
+    <div id='aboutMe' class="window" class="inactive">
+      <div  id="aboutMeTitle" class="title-bar" >
+        <div class="title-bar-text" >About Me</div>
+        <div id="twitter-controls" class="title-bar-controls">
+          <button aria-label="Minimize" id="me-min"></button>
+          <button aria-label="Close" id="me-close"></button>
+        </div>
+      </div>
+      <div class="window-body" id="me-body">
+        <img src='Nao.jpg' class='pfp'></img>
+        <b>Naomie</b>
+        <p>I'm a 21 year old Computer Science and Linguistics student at the University of Ottawa. I enjoy building things in python and java as well as making web toys in JavaScript. I have a particular interest in computational linguistics and sociolinguistics. </p>        
+      </div>
+    </div>
+    <div id='startMen' class="window">
+      <div class="window-body" id="start-menu-body">
+        <button id="git" onclick="location.href='https://www.github.com/NomadNaomie'" type="button"><img src='githubVP.png' class='siteCo' ></img><p>My GitHub</p></button>
+        <button id="redd" onclick="location.href='https://www.reddit.com/u/NomadNaomie'" type="button"><img src='redditVP.png' class='siteCo' ></img><p>My Reddit Account</p></button>
+        <button id="twit"  onclick="location.href='https://www.twitter.com/NomadNaomie'" type="button"><img src='twitterVP.png' class='siteCo' ></img><p>My Twitter</p></button>
+      </div>
+    </div>
+    <div id="start-menu" class="inactive"> 
+        <div id="start-menu-controls">
+            <button id="sbtn" aria-label="Start"></button>
+            <button class="on" id="TwitterLaunch"></button>
+            <button aria-label="ConvoyMapLaunch" class="on" id="ConvoyMapLaunch"></button>
+            <button aria-label="ParlerHeatMapLaunch" class="on" id="ParlerHeatMapLaunch"></button>
+            <button aria-label="AboutMeLaunch" class="on" id="AboutMeLaunch"></button>
+            <button aria-label="HearthLaunch" class="on" id="HearthLaunch"></button>
+        </div>
+        <div id="start-menu-text"><button id="time">time</button></div>
+    </div>
+</div>
+</body>
+<script>
+  document.body.addEventListener("wheel", e=>{
+    if(e.ctrlKey)
+      e.preventDefault();//prevent zoom
+  });
+</script>
+
+<script src="client.js"></script>
+</html>
