@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Hank Green Book Title Generator</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #ffffff;
+        }
+        .container {
+            margin-top:10vh;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+        a {
+        color: cyan;
+        }
+
+        #header{display:inline}
+        #subheader{display:inline}
+        body {
+            background: linear-gradient(92deg, #d92dd3, #2dc1d9, #2ed92d);
+            background-size: 600% 600%;
+
+            -webkit-animation: AnimationName 57s ease infinite;
+            -moz-animation: AnimationName 57s ease infinite;
+            animation: AnimationName 57s ease infinite;
+        }
+
+        @-webkit-keyframes AnimationName {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @-moz-keyframes AnimationName {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @keyframes AnimationName {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        #title{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1 id="header">A Hank Green Book Title Generator</h1>
+    <h4 id="subheader"> - By <a href="https://twitter.com/NomadNaomie">NomadNaomie</a></h3>
+    <h2>Congratulations on Authoring: </h2>
+    <h2 id="title">An Absolutely Remarkable Thing</h2>
+    <button id="generate">Generate</button>
+</div>
+    <script>
+        webSocket = new WebSocket("wss://" + window.location.host);
+
+        generateBtn = document.getElementById('generate');
+
+        generateBtn.addEventListener('click', function() {
+            webSocket.send(JSON.stringify({"type":"title"}));
+        });
+        webSocket.addEventListener('message', function(event) {
+            title = JSON.parse(event.data);
+            if (title.type == 'title') {
+                document.getElementById('title').innerHTML = title.title;
+            }
+        });
+    </script>
+</body>
+</html>
