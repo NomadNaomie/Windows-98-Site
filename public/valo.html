@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Strat Roulette</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            background-color: #333;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            margin-top: 50px;
+        }
+        #strats{
+            margin: 0 auto;
+            width: 80%;
+            text-align: center;
+        }
+        button{
+            background-color:aquamarine;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            border-color: #333;
+            font-size: 2em;
+        }
+        #strat{
+            background-color: #fff;
+            width: 30%;
+            border-radius: 10px;
+            opacity: 0.9;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+        }
+        #strategy{
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="strats">
+    <h1>Valorant Strat Roulette</h1>
+    <button id="Attacker">Attacker</button>
+    <button id="Defender">Defender</button>
+    <div id="strat">
+        <p id="strategy"></p>
+    </div>
+    </div>
+    <script>
+        generics = ["Jump jump: Constantly jump the whole round.",
+"Praise the Knife: Upon coming across an intersection, pull out your knife and left click. If your knife swings left, go left, and if your knife swings right, go right.",
+"Selective Shooting: At the start of the round, each player must state three enemy agents. If you kill an agent that is not your target you must drop your weapon.",
+"Use your utilities: You must hit a player with both your pistol and primary weapon before killing them. Order doesn't matter. If you fail, you must stop moving and shooting. This strat cannot be done on pistol rounds.",
+"One-Taps Only: You may only fire one shot at a time. If you miss, reload your weapon.",
+"Take it Slow: You can only use Marshal and Operator and must walk.",
+"AOL Messenger: No mics! You have to write in chat when and where you killed an enemy and where you are going to plant.",
+"Robin Hood: The richest player on the team must buy weapons for the rest of the team, those weapons or picked up enemy weapons must be used.",
+"One of Everything: Thanks to gun control your team can only use 1 shotgun, 1 pistol, 1 sniper rifle, 1 assault rifle and 1 SMG. The player with the most assists determines a weapon for every player.",
+"One Man's Trash: Every player buys their most hated gun and gives it to a teammate.",
+"Is That a Tornado?: When all of your teammates have been killed, they must continuously speak as a ghost",
+"Golden Gun: When the first person on your team gets a kill they must swap weapons with someone else.",
+"Compulsive Hoarders: Whenever you kill an enemy, stop what you are doing, pick up their dropped weapon and create a pile in your own spawn.",
+"Day at the Range: Everyone buy a shotgun and yell 'PULL!!!' whenever you fire at an enemy.",
+"Super detailed Callouts: Whenever you see an enemy you must tell your teammates their height, estimated age, what they're wearing, gender and shoe size etc.",
+"Spawn Camp: No one gets to leave spawn.",
+"Simon says: One person is Simon, the others have to follow and be killed uppon failure.",
+"Gladiator: Only one person may leave spawn. When that person dies, the next person leaves.",
+"Backwards headset: 180 your headset.",
+"Soviet Tactics: One person buys a gun and everyone else follows them and picks up the gun when they dies.y!",
+"Believe: 5 sheriffs",
+"One in the Chamber: Buy 1 sheriff, pass it to a teammate after 1 shot.",
+"Leapfrog Sites: Plant at one site, only after passing through the others.",
+"Peekaboo: You must peek each corner one at a time, switch the peeker for each corner.",
+"Behind you!: You can only use the S key to move around.",
+"Gunswap: Every time you kill an enemy, you must pick up the weapon he drops (including pistols) and use it for your next kill.",
+"Crouch Only: Crouch only. If someone stands up, the others must kill them.",
+"Shotguns Only: Shotguns only.",
+"Not One Step Back!: Only going forward is allowed, no sidestepping or going backwards.",
+"Napoleonic Warfare: Everyone buys a marshall, you must move as a line and all fire at any enemies you see, no retreat",
+"FaZe's Clan's Strat: Everyone must buy a marshall or operators, only noscopes allowed.",
+"Grand Prix!: Go to each site one after another, loop back and keep going until the spike is planted or plant the spike on the first site when you get there again.",
+"Veritas and Aequitas: 4 members split into 2 pairs, buys Frenzies and take a different site. Last one (Il Duce) buys Shorty and has to clutch.",
+"Gun Control: You must shoot until you are left with only one magazine worth of ammo. ",
+"Sharpshooter: If you get a headshot you may only use your pistol and util for the rest of the round.",
+"Rage Against the Machine: Equip your whole team with machine guns. When you spot an enemy you can not stop shooting until they are dead.",
+"Mom, Get The Camera!: You must pose for photos with your kills. ",
+"Alpha and Omega grindset: The two bottom frags are not allowed to buy weapons, only utility, They must entry.",
+"Max Pain: Shorty only!",
+"Valorant:CoD: You must aim down sights for the entire round.",
+"Dance Dance Revolution: For every second you press W, you must press A, S and D",
+"It's Time To Say Goodbye: All buy Omin, armor, and rush together while holding fire.",
+"Reverse Showdown: Move in a group with each person looking a different way.",
+"Social Distancing: No two agents are allowed in the same room at the same time and stay at least 1,5 meter apart from each other.",
+"Earn your armor: You can only buy armor next round if you win this one.",
+"The Michael Jackson: Your team must walk backwards. You can only start walking normal again after a teammate gets killed",
+"Nice Shot!: Everyone buys a guardian or sheriff, when you shoot someone everyone on the team needs to type nice shot!"]
+        attackers = [
+        "Crabwalk: Everyone buys Frenzy and crouch rushes any site.",
+        "Hot Potato: You can't have the spike in your inventory for more than 5 seconds; you must throw it to someone else before time's up.",
+        "Mr.President (VIP): One of the agents is a president and they can only hold their knife. They carry the spike. The other attackers have to protect the president by bodyguarding",
+        "Round the World (and Back Again): Run up to A site. As soon as you get a kill, turn around and the whole team rushes back to B. Rinse and repeat until a clear spikesite is reached or all Defenders are eliminated.",
+        "Blitzkrieg: Buy 5 Spectres, rush into a site without stopping. ",
+        "Samurai Master: One player is selected as the samurai master, they may only use their knife. Other team mates may not kill enemies or wound them. If they kill an enemy they must rush with their knife out. If the Samurai dies, the closest teammate becomes the Samurai",
+        "UK RUSH: Rush a site one by one, with 5 seconds between each person entering.",
+        "The Spectre: 5 agents. 5 Spectres.",
+        "Priorities: Try to plant the spike using only pistols. Only after planting the spike may you switch to your weapon of choice.",
+        "10 minutes to save the world: Camp outside a spike site until there are 15 seconds left. ",
+        "(Never) Go Full Rambo: Buy as many Odins and rush site. People who can't afford it can only use knives.",
+        "Role Reversal: Drop the spike at the entrance to a site, rotate back around the entire map 'retake' the spike.",
+        "G-Unit: Buy Stingers and do a 'drive-by' at each spikesite.",
+        "The Na'Vi: You can't stop moving. You can't take a site until there is only 25 seconds remaining.",
+        "Marked for Death: One person runs ahead with their knife and finds someone. The rest of the four must cover the scout's retreat.",
+        "The Clean Plant: Drop the spike at spawn, go to any site as a team, when the site is clear you may go to spawn, get the spike, go back, and plant.",
+        "Ace: Every time you encounter an intersection, draw an arrow on the ground with bullets to where you are heading. The whole team must stay together.",
+        "Firing Squad: Everyone buys Marshall/Operator and shoots only when the team captain says 'Fire!'",
+        "Googly Eyes: The four non-spike carriers must pair up and go to different sites while always facing away from their partners.",
+        "Postplant Positions: Once the spike is planted, nobody can move.",
+        "Sod Off!: Everyone must buy a shorty Off. When you get a kill, you must type 'Sod Off' in chat.",
+        "One Man Entrance: one person must enter a site at a time. Once that person dies the next person can go.",
+        "Hit and Run: Take a spike site, and after you take it, drop the spike and go back to your spawn before going back.",
+        "Leeroy Jenkins: Everyone lines up outside of your preferred site. Once there, everybody must type LEEROY JENKINS as loud as possible as they storm the spikesite.",
+        "Be A Leader: Only the player with the spike can move. You can pass the spike to another player.",
+        "Dizzy spike: Once the spike is planted, everyone must hold A",
+        "The Shia Labeouf: 4 players rush into one spike site while the 5th is behind giving inspirational speech.",
+        "Centrist: Buy only Frenzy and armor, rush up mid. "
+        ]
+        defenders = [
+        "Pacifists: Everyone hide until the spike is planted, without shooting you must defuse the spike.",
+        "Miami Vice: Only Shotguns and Sheriffs, everyone must say a one-liner in chat after getting a kill.",
+        "Smoke Party: Hide in one site, wait for the plant before moving.",
+        "Quick Push: If the spike is planted, you must freeze in place for 10 seconds",
+        "The Bee Hive: Everyone buys an SMG and hides outside of sites, when the spike is planted type BZZZZ in chat and rush.",
+        "CS:GHOST: Using nothing but a ghost, make it to attacker spawn and attack the site attackers are pushing.",
+        "Defusers are for Losers: You can not defuse the spike, you must eliminate every enemy before they can plant.",
+        "Retakes Only: Wait in spawn until the spike is planted, then begin the round.",
+        "Suck my unit: 1 person buys an Odin, and the team splits up, with one person going by themselves. That person isn't allowed to look at the mini-map.",
+        "Scumbag Artillery: Buy marshall and Operator, snipe mid in a firing line until the spike is planted.",
+        "Splinter Cell: Use only silenced weapons/knives. Don't run.",
+        "KQLY-Style: You can only kill people while jumping.",
+        "New Sheriff in Town: Everyone buys a sheriff, every kill you get you must type 'Theres a new sheriff in town, Yeehaw!'",
+        "Tom Clancy's Rainbow Five: Everyone buys silenced weapons, you must walk everywhere and whisper. If you are spotted you must kill the person who spotted you and retreat. ",
+        "Odin 4 win: Pick a site and pile up in a corner with Odins. If the attackers pick your site, defend it as best you can. If they pick the other site, you must push together and you are not allowed to hold anything else than a Odin"
+        ]
+        var attacker = document.getElementById('Attacker');
+        var defender = document.getElementById('Defender');
+        var strategy = document.getElementById('strategy');
+        
+        attacker.addEventListener('click', function(){
+            strat('Attacker');
+        });
+        defender.addEventListener('click', function(){
+            strat('Defender');
+        });
+        function strat(side){
+            if (side=="Defender"){
+                var rand = Math.floor(Math.random() * 2);
+                if (rand==0){
+                    var rand2 = Math.floor(Math.random() * defenders.length);
+                    strategyText = defenders[rand2];
+                    strategy.innerHTML = strategyText;
+                } else {
+                    var rand2 = Math.floor(Math.random() * generics.length);
+                    strategyText = generics[rand2];
+                    strategy.innerHTML = strategyText;
+                }
+            }else{
+                var rand = Math.floor(Math.random() * 2);
+                if (rand==0){
+                    var rand2 = Math.floor(Math.random() * attackers.length);
+                    strategyText = attackers[rand2];
+                    strategy.innerHTML = strategyText;
+                } else {
+                    var rand2 = Math.floor(Math.random() * generics.length);
+                    strategyText = generics[rand2];
+                    strategy.innerHTML = strategyText;
+            }
+        }
+    }
+    </script>
+</body>
+</html>
