@@ -5,15 +5,15 @@ const WebSocket = require('ws');
 const Twitter = require('twitter');
 const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
-const sqlite = require("sqlite3");
+const sqlite = require("better-sqlite3");
 nouns = require('./nouns.json');
 adjectives = require('./adjectives.json');
 adverbs = require('./adverbs.json');
 vowels = ['a','e','i','o','u'];
 // const http = require("http");
 //Create connections table if it doesn't exist
-const db = new sqlite.Database("./db.sqlite");
-db.run("CREATE TABLE IF NOT EXISTS connections (ip TEXT, page TEXT, time INTEGER)");
+const db = new sqlite("./connections.db");
+db.prepare("CREATE TABLE IF NOT EXISTS connections (ip TEXT, page TEXT, time INTEGER)").run();
 
 const path = require("path");
 app.use(express.static(__dirname + "/public"));
@@ -21,7 +21,7 @@ app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.get('/', function(req, res) {
     try{
-        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
     }
     catch(err){
         console.log(err);
@@ -35,7 +35,7 @@ app.get('/hankgreenbooks', function(req, res) {
 
 app.get('/parler', function(req, res) {
     try{
-        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
     }
     catch(err){
         console.log(err);
@@ -44,7 +44,7 @@ app.get('/parler', function(req, res) {
 });
 app.get('/map', function(req, res) {
     try{
-        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
     }
     catch(err){
         console.log(err);
@@ -53,7 +53,7 @@ app.get('/map', function(req, res) {
 });
 app.get('/hearth', function(req, res) {
     try{
-        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
     }
     catch(err){
         console.log(err);
@@ -62,7 +62,7 @@ app.get('/hearth', function(req, res) {
 });
 app.get('/members', function(req, res) {
     try{
-        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
     }
     catch(err){
         console.log(err);
@@ -126,4 +126,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(443);
+server.listen(4403);
