@@ -5,27 +5,60 @@ const WebSocket = require('ws');
 const Twitter = require('twitter');
 const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
+const sqlite = require("sqlite3");
 // const http = require("http");
-
+//Create connections table if it doesn't exist
+const db = new sqlite.Database("./db.sqlite");
+db.run("CREATE TABLE IF NOT EXISTS connections (ip TEXT, page TEXT, time INTEGER)");
 
 const path = require("path");
 app.use(express.static(__dirname + "/public"));
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.get('/', function(req, res) {
+    try{
+        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/parler', function(req, res) {
+    try{
+        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     res.sendFile(path.join(__dirname, 'public/parlerVideoData.html'));
 });
 app.get('/map', function(req, res) {
+    try{
+        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     res.sendFile(path.join(__dirname, 'public/map.html'));
 });
 app.get('/hearth', function(req, res) {
+    try{
+        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     res.sendFile(path.join(__dirname, 'public/hearth.html'));
 });
 app.get('/members', function(req, res) {
+    try{
+        db.run("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     res.sendFile(path.join(__dirname, 'public/members.html'));
 });
 
