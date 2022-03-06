@@ -21,7 +21,7 @@ app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.get('/', function(req, res) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run(req.ip, req.path, Date.now());
     }
     catch(err){
         console.log(err);
@@ -35,7 +35,7 @@ app.get('/hankgreenbooks', function(req, res) {
 
 app.get('/parler', function(req, res) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
     }
     catch(err){
         console.log(err);
@@ -44,7 +44,7 @@ app.get('/parler', function(req, res) {
 });
 app.get('/map', function(req, res) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
     }
     catch(err){
         console.log(err);
@@ -53,16 +53,25 @@ app.get('/map', function(req, res) {
 });
 app.get('/hearth', function(req, res) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
     }
     catch(err){
         console.log(err);
     }
     res.sendFile(path.join(__dirname, 'public/hearth.html'));
 });
+app.get('/valo',function(req,res){
+    try{
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
+    res.sendFile(path.join(__dirname, 'public/valo.html'));
+});
 app.get('/members', function(req, res) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)", req.ip, req.path, Date.now()).run();
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
     }
     catch(err){
         console.log(err);
@@ -126,4 +135,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(4403);
+server.listen(4430);
