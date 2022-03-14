@@ -1,5 +1,4 @@
-
-const socket = new WebSocket('wss://' + window.location.hostname);
+const socket = new WebSocket('wss://' + window.location.hostname + ':4430');
 socket.addEventListener('message', function (event) {
   tweets = event.data;
   tweets = JSON.parse(tweets)
@@ -22,6 +21,11 @@ aboutMeClose = document.getElementById("me-close");
 aboutMeBody = document.getElementById("me-body");
 aboutMeWindow = document.getElementById('aboutMe');
 aboutMeLaunch = document.getElementById("AboutMeLaunch");
+anonymousMessageWindow = document.getElementById("anonymousMessageWindow");
+anonymousMessageLaunch = document.getElementById("anonymousMessageLaunch");
+anonymousMessageMin = document.getElementById("anon-min");
+anonymousMessageClose = document.getElementById("anon-close");
+anonymousMessageBody = document.getElementById("anonymousMessageBody");
 twitterLaunch = document.getElementById("TwitterLaunch");
 heatmapLaunch = document.getElementById("ParlerHeatMapLaunch");
 convoyLaunch = document.getElementById("ConvoyMapLaunch");
@@ -39,6 +43,9 @@ a2min = document.getElementById("a2-min");
 a1close = document.getElementById("a1-close");
 a1min = document.getElementById("a1-min");
 
+messageSendButton = document.getElementById("anonymousMessageSubmit");
+
+
 contBtn = document.getElementById("confBtn");
 contWin = document.getElementById("confirmWindow");
 contBtn.addEventListener('click', function () {
@@ -48,9 +55,11 @@ contBtn.addEventListener('click', function () {
   twitterFeed.classList.toggle("off");
   twitterLaunch.classList.toggle("on");
   hearthLaunch.classList.toggle("on");
+  anonymousMessageLaunch.classList.toggle("on");
   a1win.classList.toggle("on");
   a2win.classList.toggle("on");
   a3win.classList.toggle("on");
+  anonymousMessageWindow.classList.toggle("on");
   document.getElementById("desktop-wallpaper").classList.toggle("inactive");
   document.getElementById("aboutMe").classList.toggle("inactive");
   document.getElementById("start-menu").classList.toggle("inactive");
@@ -63,16 +72,18 @@ aboutMeLaunch.classList.toggle("on");
 twitterFeed.classList.toggle("off");
 twitterLaunch.classList.toggle("on");
 hearthLaunch.classList.toggle("on");
+anonymousMessageLaunch.classList.toggle("on");
 a1win.classList.toggle("on");
 a2win.classList.toggle("on");
 a3win.classList.toggle("on");
+anonymousMessageWindow.classList.toggle("on");
 startBtn = document.getElementById("sbtn");
 startBtn.addEventListener("click", function () {
   startMen.classList.toggle("off");
 })
 
 dragables = [
-  twitterFeed, aboutMeWindow, a1win, a2win, a3win
+  twitterFeed, aboutMeWindow, a1win, a2win, a3win, anonymousMessageWindow,
 ]
 curZ = 3;
 for (dragable of dragables) {
@@ -120,6 +131,18 @@ function dragElement(elmnt) {
   }
 }
 
+messageSendButton.addEventListener('click', function () {
+  var message = document.getElementById("anonymousMessageInput").value;
+  if (message == "")return;
+  var messageObj = {
+    message: message,
+    type: "anonymousMessage",
+  }
+  socket.send(JSON.stringify(messageObj));
+  document.getElementById("anonymousMessageInput").value = "";
+})
+
+
 a1min.addEventListener('click', function () {
   a1body.style.display != "none" ? a1body.style.display = "none" : a1body.style.display = "block";
 })
@@ -141,8 +164,19 @@ a3close.addEventListener('click', function () {
   a3win.classList.toggle("off");
   heatmapLaunch.classList.toggle("on");
 })
+anonymousMessageMin.addEventListener('click', function () {
+  anonymousMessageBody.style.display != "none" ? anonymousMessageBody.style.display = "none" : anonymousMessageBody.style.display = "block";
+})
+anonymousMessageClose.addEventListener('click', function () {
+  anonymousMessageWindow.classList.toggle("off");
+  anonymousMessageLaunch.classList.toggle("on");
+})
+
 a3body.addEventListener('click', function () {
   a3win.style.zIndex = ++curZ;
+});
+anonymousMessageBody.addEventListener('click', function () {
+  anonymousMessageWindow.style.zIndex = ++curZ;
 });
 a2body.addEventListener('click', function () {
   a2win.style.zIndex = ++curZ;
@@ -197,7 +231,9 @@ convoyLaunch.addEventListener('click', function () {
 hearthLaunch.addEventListener('click', function () {
   if (a1win.classList.contains("off")) {a1win.classList.toggle("off");hearthLaunch.classList.toggle("on");}
 });
-
+anonymousMessageLaunch.addEventListener('click', function () {
+  if (anonymousMessageWindow.classList.contains("off")) {anonymousMessageWindow.classList.toggle("off");anonymousMessageLaunch.classList.toggle("on");}
+});
 
 
 

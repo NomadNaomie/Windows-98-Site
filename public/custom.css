@@ -74,7 +74,7 @@ html, body {
     max-height: fit-content;
     position:relative;
     z-index: 1000;position: absolute;
-    top: 68.5vh;
+    top: 63vh;
     left: 0%;
     margin-bottom: 5vh;
 }
@@ -258,6 +258,14 @@ button.on{
     top: 15%;
     height:auto;
     left: 15%;
+}
+#anonymousMessageWindow{
+    position:absolute;
+    width: 20vw;z-index: 2;position: absolute;
+    transform: translate(-50%, -50%);
+    top: 10%;
+    height:auto;
+    left: 65%;
 }
 #a1win{
     position:absolute;
@@ -444,6 +452,9 @@ button.on{
     left: 20%;
     overflow: hidden;
 
+}
+#anonymousMessageWindow.on{
+    display:none;
 }
 #a3win.on{
     display:none;

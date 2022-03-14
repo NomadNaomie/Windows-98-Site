@@ -14,6 +14,7 @@ vowels = ['a','e','i','o','u'];
 //Create connections table if it doesn't exist
 const db = new sqlite("./connections.db");
 db.prepare("CREATE TABLE IF NOT EXISTS connections (ip TEXT, page TEXT, time INTEGER)").run();
+db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
 
 const path = require("path");
 app.use(express.static(__dirname + "/public"));
@@ -81,7 +82,6 @@ app.get('/members', function(req, res) {
 
 
 function generateTitle(){
-    var title = "";
     adv = adverbs[Math.floor(Math.random() * adverbs.length)];
     adj = adjectives[Math.floor(Math.random() * adjectives.length)];
     adj = adj.charAt(0).toUpperCase() + adj.slice(1);
@@ -115,11 +115,12 @@ wss.on('connection', function connection(ws) {
         if(data.type=="title"){
             newTitle = generateTitle();
             ws.send(JSON.stringify({type:"title",title:newTitle}));
+        }else if (data.type=="anonymousMessage"){
+            db.prepare("INSERT INTO messages VALUES (?)").run(data.message);
         }
     });
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
-            //pfp author body link
             var sendTweets = []
             for (tweet of tweets) {
                 sendTweets.push({
@@ -135,4 +136,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(4430);
+server.listen(443);

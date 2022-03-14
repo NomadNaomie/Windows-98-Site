@@ -80,6 +80,21 @@
           </div>
          <div id="desktop-wallpaper"class="inactive" ></div>
     </div>
+    <div id='anonymousMessageWindow' class="window" class="inactive">
+      <div  id="anonymousMessageTitle" class="title-bar" >
+        <div class="title-bar-text" >Anonymous Message Box</div>
+        <div id="anonymousMessageControl" class="title-bar-controls">
+          <button aria-label="Minimize" id="anon-min"></button>
+          <button aria-label="Close" id="anon-close"></button>
+        </div>
+      </div>
+      <div class="window-body" id="anonymousMessageBody">
+        <form id="anonymousMessageForm">
+          <input type="text" id="anonymousMessageInput" placeholder="Enter your message here..."></input>
+          <button type="button" id="anonymousMessageSubmit">Send</button>
+        </form>
+      </div>
+    </div>
     <div id='aboutMe' class="window" class="inactive">
       <div  id="aboutMeTitle" class="title-bar" >
         <div class="title-bar-text" >About Me</div>
@@ -96,7 +111,7 @@
     </div>
     <div id='startMen' class="window">
       <div class="window-body" id="start-menu-body">
-        <button id="bd" onclick="window.location.href='https://betterdiscord.app/plugin/Tone%20Indicators'"><img src='bd.png' class="siteCo"></img><p>BetterDiscord Tone Indicator Plugin</p></button>
+        <button id="bd" onclick="window.location.href='https://betterdiscord.app/plugin/Tone%20Indicators'"><img src='bd.png' class="siteCo"></img><p>BD Tone Indicators</p></button>
         <button id="hank" onclick="window.location.href='/hankgreenbooks'" type="button"><img src='hank.png' class='siteCo' ></img><p>Hank Green Book title generator</p></button>
         <button id="nhl" onclick="window.location.href='/nhl'" type="button"><img src='nhl.png' class='siteCo' ></img><p>2019-2020 NHL Goals and Assist</p></button>
         <button id="valo" onclick="window.location.href='/valo'" type="button"><img src='valorant.png' class='siteCo' ></img><p>Valorant Strat Roulette</p></button>
@@ -107,6 +122,7 @@
     <div id="start-menu" class="inactive"> 
         <div id="start-menu-controls">
             <button id="sbtn" aria-label="Start"></button>
+            <button class="on" id="anonymousMessageLaunch"></button>
             <button class="on" id="TwitterLaunch"></button>
             <button aria-label="ConvoyMapLaunch" class="on" id="ConvoyMapLaunch"></button>
             <button aria-label="ParlerHeatMapLaunch" class="on" id="ParlerHeatMapLaunch"></button>
