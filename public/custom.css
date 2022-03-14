@@ -66,7 +66,7 @@ html, body {
 #start-menu-controls button:focus {
     outline: none
 }
-#startMen{
+#startWin{
     display: flex;
     min-height: fit-content;
     padding: 0;
@@ -78,7 +78,7 @@ html, body {
     left: 0%;
     margin-bottom: 5vh;
 }
-#startMen.off{
+#startWin.off{
     display: none;
 }
 #start-menu-body button{
@@ -89,6 +89,7 @@ html, body {
     max-height: 5vh;
     min-height: 5vh;
 }
+
 #start-menu-controls button[aria-label=Start] {
     background-image: url("starbutton.png");
     background-size:contain;
@@ -102,6 +103,21 @@ html, body {
     padding-left: 5vw;
     padding-right: 5vw;
     
+}
+#start-menu-controls #anonymousMessageLaunch{
+    background-image: url("sticky.webp");
+    background-size:contain;
+    background-repeat: no-repeat;
+    min-height: 4vh;
+    min-width: 2vw;
+    max-height: 4vh;
+    max-width: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    background-position: 50%, 50%;
+
 }
 #start-menu-controls #TwitterLaunch {
     background-image: url("twitterVP.png");

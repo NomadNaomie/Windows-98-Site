@@ -1,89 +1,93 @@
-const socket = new WebSocket('wss://' + window.location.hostname + ':4430');
-socket.addEventListener('message', function (event) {
-  tweets = event.data;
-  tweets = JSON.parse(tweets)
-  for (tweet of tweets) {
-    tweetDiv = document.createElement("div");
-    tweetDiv.classList.add("tweet");
-    tweetDiv.innerHTML = `<img class='pfp' src="${tweet.pfp}"></img>
-        <b>${tweet.author}</b>
-        <p>${tweet.body}<br><a href="${tweet.link}">Tweet</a></p>`;
-    document.getElementById("tweet-body").appendChild(tweetDiv);
-  }
-});
+const socket = new WebSocket('wss://' + window.location.hostname);
 
-twitterFeed = document.getElementById("twitterFeed");
-twitterMin = document.getElementById("twitter-min");
-twitterClose = document.getElementById("twitter-close");
-twitterBody = document.getElementById("tweet-body");
-aboutMeMin = document.getElementById("me-min");
-aboutMeClose = document.getElementById("me-close");
-aboutMeBody = document.getElementById("me-body");
-aboutMeWindow = document.getElementById('aboutMe');
-aboutMeLaunch = document.getElementById("AboutMeLaunch");
+
+/*
+*  Window variables
+*/
+
+
+
+//Anonymous Message
 anonymousMessageWindow = document.getElementById("anonymousMessageWindow");
-anonymousMessageLaunch = document.getElementById("anonymousMessageLaunch");
-anonymousMessageMin = document.getElementById("anon-min");
 anonymousMessageClose = document.getElementById("anon-close");
+anonymousMessageMin = document.getElementById("anon-min");
 anonymousMessageBody = document.getElementById("anonymousMessageBody");
-twitterLaunch = document.getElementById("TwitterLaunch");
-heatmapLaunch = document.getElementById("ParlerHeatMapLaunch");
-convoyLaunch = document.getElementById("ConvoyMapLaunch");
-hearthLaunch = document.getElementById("HearthLaunch");
-a3body = document.getElementById("a3-body");
-a3win = document.getElementById("a3win");
-a2body = document.getElementById("a2-body");
+anonymousMessageBtn = document.getElementById("anonymousMessageBtn");
+
+
+//Twitter Feed
+twitterWindow = document.getElementById("twitterWindow");
+twitterClose = document.getElementById("twitter-close");
+twitterMin = document.getElementById("twitter-min");
+twitterBody = document.getElementById("tweet-body");
+
+//GiveSendGo
 a2win = document.getElementById("a2win");
-a1body = document.getElementById("a1-body");
-a1win = document.getElementById("a1win");
-a3close = document.getElementById("a3-close");
-a3min = document.getElementById("a3-min");
 a2close = document.getElementById("a2-close");
 a2min = document.getElementById("a2-min");
+a2body = document.getElementById("a2-body");
+
+//Parler
+a3win = document.getElementById("a3win");
+a3close = document.getElementById("a3-close");
+a3min = document.getElementById("a3-min");
+a3body = document.getElementById("a3-body");
+
+//About me
+aboutMeWindow = document.getElementById('aboutMe');
+aboutMeClose = document.getElementById("me-close");
+aboutMeMin = document.getElementById("me-min");
+aboutMeBody = document.getElementById("me-body");
+
+//Hearth
+a1win = document.getElementById("a1win");
 a1close = document.getElementById("a1-close");
 a1min = document.getElementById("a1-min");
+a1body = document.getElementById("a1-body");
 
-messageSendButton = document.getElementById("anonymousMessageSubmit");
 
 
-contBtn = document.getElementById("confBtn");
+//Launchers
+anonymousMessageLaunch = document.getElementById("anonymousMessageLaunch");
+twitterLaunch = document.getElementById("TwitterLaunch");
+convoyLaunch = document.getElementById("ConvoyMapLaunch");
+heatmapLaunch = document.getElementById("ParlerHeatMapLaunch");
+aboutMeLaunch = document.getElementById("AboutMeLaunch");
+hearthLaunch = document.getElementById("HearthLaunch");
+
+//Confirmation Box
 contWin = document.getElementById("confirmWindow");
-contBtn.addEventListener('click', function () {
-  contWin.classList.add("off")
-  aboutMeWindow.classList.toggle("off");
-  aboutMeLaunch.classList.toggle("on");
-  twitterFeed.classList.toggle("off");
-  twitterLaunch.classList.toggle("on");
-  hearthLaunch.classList.toggle("on");
-  anonymousMessageLaunch.classList.toggle("on");
-  a1win.classList.toggle("on");
-  a2win.classList.toggle("on");
-  a3win.classList.toggle("on");
-  anonymousMessageWindow.classList.toggle("on");
-  document.getElementById("desktop-wallpaper").classList.toggle("inactive");
-  document.getElementById("aboutMe").classList.toggle("inactive");
-  document.getElementById("start-menu").classList.toggle("inactive");
+contBtn = document.getElementById("confBtn");
 
-})
-startMen = document.getElementById("startMen")
-startMen.classList.toggle("off");
-aboutMeWindow.classList.toggle("off");
-aboutMeLaunch.classList.toggle("on");
-twitterFeed.classList.toggle("off");
-twitterLaunch.classList.toggle("on");
-hearthLaunch.classList.toggle("on");
+
+//Start Menu
+startWin = document.getElementById("startWin")
+startBtn = document.getElementById("sbtn");
+
+
+
+/*
+* Start state
+*/
 anonymousMessageLaunch.classList.toggle("on");
-a1win.classList.toggle("on");
+anonymousMessageWindow.classList.toggle("on");
+twitterWindow.classList.toggle("off");
+twitterLaunch.classList.toggle("on");
 a2win.classList.toggle("on");
 a3win.classList.toggle("on");
-anonymousMessageWindow.classList.toggle("on");
-startBtn = document.getElementById("sbtn");
-startBtn.addEventListener("click", function () {
-  startMen.classList.toggle("off");
-})
+startWin.classList.toggle("off");
+aboutMeWindow.classList.toggle("off");
+aboutMeLaunch.classList.toggle("on");
+hearthLaunch.classList.toggle("on");
+a1win.classList.toggle("on");
+
+
+/*
+* Dragging
+*/
 
 dragables = [
-  twitterFeed, aboutMeWindow, a1win, a2win, a3win, anonymousMessageWindow,
+  twitterWindow, aboutMeWindow, a1win, a2win, a3win, anonymousMessageWindow,
 ]
 curZ = 3;
 for (dragable of dragables) {
@@ -131,7 +135,26 @@ function dragElement(elmnt) {
   }
 }
 
-messageSendButton.addEventListener('click', function () {
+
+/*
+*  Event Listeners
+*/
+//WebSocket
+socket.addEventListener('message', function (event) {
+  tweets = event.data;
+  tweets = JSON.parse(tweets)
+  for (tweet of tweets) {
+    tweetDiv = document.createElement("div");
+    tweetDiv.classList.add("tweet");
+    tweetDiv.innerHTML = `<img class='pfp' src="${tweet.pfp}"></img>
+        <b>${tweet.author}</b>
+        <p>${tweet.body}<br><a href="${tweet.link}">Tweet</a></p>`;
+    document.getElementById("tweet-body").appendChild(tweetDiv);
+  }
+});
+
+
+anonymousMessageBtn.addEventListener('click', function () {
   var message = document.getElementById("anonymousMessageInput").value;
   if (message == "")return;
   var messageObj = {
@@ -142,48 +165,91 @@ messageSendButton.addEventListener('click', function () {
   document.getElementById("anonymousMessageInput").value = "";
 })
 
+//Confirmation
+contBtn.addEventListener('click', function () {
+  contWin.classList.add("off")
+  aboutMeWindow.classList.toggle("off");
+  aboutMeLaunch.classList.toggle("on");
+  twitterWindow.classList.toggle("off");
+  twitterLaunch.classList.toggle("on");
+  hearthLaunch.classList.toggle("on");
+  anonymousMessageLaunch.classList.toggle("on");
+  a1win.classList.toggle("on");
+  a2win.classList.toggle("on");
+  a3win.classList.toggle("on");
+  anonymousMessageWindow.classList.toggle("on");
+  document.getElementById("desktop-wallpaper").classList.toggle("inactive");
+  document.getElementById("aboutMe").classList.toggle("inactive");
+  document.getElementById("start-menu").classList.toggle("inactive");
+})
+
+//Start Menu
+startBtn.addEventListener("click", function () {
+  startWin.classList.toggle("off");
+})
+
+//Mins
 
 a1min.addEventListener('click', function () {
   a1body.style.display != "none" ? a1body.style.display = "none" : a1body.style.display = "block";
 })
+a2min.addEventListener('click', function () {
+  a2body.style.display != "none" ? a2body.style.display = "none" : a2body.style.display = "block";
+})
+a3min.addEventListener('click', function () {
+  a3body.style.display != "none" ? a3body.style.display = "none" : a3body.style.display = "block";
+})
+anonymousMessageMin.addEventListener('click', function () {
+  anonymousMessageBody.style.display != "none" ? anonymousMessageBody.style.display = "none" : anonymousMessageBody.style.display = "block";
+})
+twitterMin.addEventListener('click', function (button) {
+  twitterBody.classList.toggle("off");
+}, false)
+aboutMeMin.addEventListener('click', function (button) {
+  aboutMeBody.classList.toggle("off");
+}, false)
+
+//Closes
 a1close.addEventListener('click', function () {
   a1win.classList.toggle("off");
   hearthLaunch.classList.toggle("on");
-})
-a2min.addEventListener('click', function () {
-  a2body.style.display != "none" ? a2body.style.display = "none" : a2body.style.display = "block";
 })
 a2close.addEventListener('click', function () {
   a2win.classList.toggle("off");
   convoyLaunch.classList.toggle("on");
 })
-a3min.addEventListener('click', function () {
-  a3body.style.display != "none" ? a3body.style.display = "none" : a3body.style.display = "block";
-})
 a3close.addEventListener('click', function () {
   a3win.classList.toggle("off");
   heatmapLaunch.classList.toggle("on");
-})
-anonymousMessageMin.addEventListener('click', function () {
-  anonymousMessageBody.style.display != "none" ? anonymousMessageBody.style.display = "none" : anonymousMessageBody.style.display = "block";
 })
 anonymousMessageClose.addEventListener('click', function () {
   anonymousMessageWindow.classList.toggle("off");
   anonymousMessageLaunch.classList.toggle("on");
 })
+aboutMeClose.addEventListener('click', function (button) {
+  aboutMeWindow.classList.toggle("off");
+  aboutMeLaunch.classList.toggle("on");
+})
+twitterClose.addEventListener('click', function (button) {
+  twitterWindow.classList.toggle("off");
+  twitterLaunch.classList.toggle("on");
+})
 
+//Bodies
+a1body.addEventListener('click', function () {
+  a1win.style.zIndex = ++curZ;
+});
+a2body.addEventListener('click', function () {
+  a2win.style.zIndex = ++curZ;
+});
 a3body.addEventListener('click', function () {
   a3win.style.zIndex = ++curZ;
 });
 anonymousMessageBody.addEventListener('click', function () {
   anonymousMessageWindow.style.zIndex = ++curZ;
 });
-a2body.addEventListener('click', function () {
-  a2win.style.zIndex = ++curZ;
-});
-a1body.addEventListener('click', function () {
-  a1win.style.zIndex = ++curZ;
-});
+
+//Windows
 a1win.addEventListener('click', function () {
   a1win.style.zIndex = ++curZ;
 });
@@ -193,34 +259,13 @@ a2win.addEventListener('click', function () {
 a3win.addEventListener('click', function () {
   a3win.style.zIndex = ++curZ;
 });
-a3body.addEventListener('mouseover', function () {
-  a3win.style.zIndex = ++curZ;
-});
-a2body.addEventListener('mouseover', function () {
-  a2win.style.zIndex = ++curZ;
-});
-a1body.addEventListener('mouseover', function () {
-  a1win.style.zIndex = ++curZ;
-});
-twitterMin.addEventListener('click', function (button) {
-  twitterBody.classList.toggle("off");
-}, false)
-aboutMeMin.addEventListener('click', function (button) {
-  aboutMeBody.classList.toggle("off");
-}, false)
-aboutMeClose.addEventListener('click', function (button) {
-  aboutMeWindow.classList.toggle("off");
-  aboutMeLaunch.classList.toggle("on");
-})
-twitterClose.addEventListener('click', function (button) {
-  twitterFeed.classList.toggle("off");
-  twitterLaunch.classList.toggle("on");
-})
+
+
 aboutMeLaunch.addEventListener('click', function (button) {
   if (aboutMeWindow.classList.contains("off")) {aboutMeWindow.classList.toggle("off");aboutMeLaunch.classList.toggle("on");}
 })
 twitterLaunch.addEventListener('click', function (button) {
-  if (twitterFeed.classList.contains("off")) { twitterFeed.classList.toggle("off"); twitterLaunch.classList.toggle("on"); }
+  if (twitterWindow.classList.contains("off")) { twitterWindow.classList.toggle("off"); twitterLaunch.classList.toggle("on"); }
 })
 heatmapLaunch.addEventListener('click', function () {
   if (a3win.classList.contains("off")) {a3win.classList.toggle("off");heatmapLaunch.classList.toggle("on");}
