@@ -59,13 +59,6 @@ html, body {
     max-width: 4vw;
 }
 
-#start-menu-controls button:active {
-    padding: .5vh .1vw;
-}
-
-#start-menu-controls button:focus {
-    outline: none
-}
 #startWin{
     display: flex;
     min-height: fit-content;
@@ -74,7 +67,7 @@ html, body {
     max-height: fit-content;
     position:relative;
     z-index: 1000;position: absolute;
-    top: 63vh;
+    top: 64vh;
     left: 0%;
     margin-bottom: 5vh;
 }
@@ -97,103 +90,79 @@ html, body {
     min-height: 4vh;
     min-width: 5vw;
     max-height: 4vh;
-    max-width: 5vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
+    
     padding-left: 5vw;
     padding-right: 5vw;
     
 }
+.launchIcon{
+    display:inline-block;
+    height: 3vh;
+    margin:0 1px 0 0;
+    padding: 0 .1vw;
+    vertical-align:middle;
+}
+#start-menu-controls p{
+    display: inline-block;
+    padding:0;
+    margin:0 0 0 10px;
+    font-size:1.25em;
+    vertical-align:middle;
+}
 #start-menu-controls #anonymousMessageLaunch{
-    background-image: url("sticky.webp");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 
 }
 #start-menu-controls #TwitterLaunch {
-    background-image: url("twitterVP.png");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 
 }
 #start-menu-controls #ConvoyMapLaunch {
-    background-image: url("givesendgoicon.png");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 
 }
 #start-menu-controls #HearthLaunch {
-    background-image: url("hearth.jpg");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 
 }
 #start-menu-controls button[aria-label=ParlerHeatMapLaunch] {
-    background-image: url("parlericon.webp");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding: 1vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 
 }
 #start-menu-controls #AboutMeLaunch {
-    background-image: url("LiLogo.png");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    padding: 1vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 }
 button.on{
     box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
@@ -217,22 +186,12 @@ button.on{
     background-position: 50%, 50%;
 }
 #start-menu-controls #AboutMeLaunch {
-    background-image: url("AnimeV2.png");
-    background-size:contain;
-    background-repeat: no-repeat;
     min-height: 4vh;
-    min-width: 2vw;
+    min-width: 10vw;
     max-height: 4vh;
-    max-width: 2vw;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    background-position: 50%, 50%;
+    width: 6vw;
+    white-space: nowrap;
+    text-align: left;
 }
 #desktop-wallpaper{
     background-image: url("https://i.imgur.com/3nnU3c7.jpg");
@@ -260,7 +219,7 @@ button.on{
     top: 20%;
     left: 50%;
 }
-#twitterFeed{
+#twitterWindow{
     position:absolute;
     width: 15vw;z-index: 7;position: absolute;
     transform: translate(-50%, -50%);
@@ -482,7 +441,7 @@ button.on{
     display:none;
 }
 
-#twitterFeed{
+#twitterWindow{
     max-height: 42vh;
 }
 #tweet-body{
@@ -512,7 +471,7 @@ button.on{
     padding: 0;
 }
 #start-menu-body button p{
-    padding-left: 1vw;
+   padding-left: 1vw;
 }
 #start-menu-body button .siteCo{
     height: 4vh;

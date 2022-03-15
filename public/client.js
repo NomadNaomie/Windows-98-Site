@@ -1,4 +1,4 @@
-const socket = new WebSocket('wss://' + window.location.hostname);
+const socket = new WebSocket('wss://' + window.location.hostname+":4430");
 
 
 /*
