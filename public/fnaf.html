@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smash or Pass</title>
+    <meta content="Five Nights at Freddy's: Security Breach Smash or Pass" property="og:title" />
+    <meta content="Who is the hottest character with a good PNG available on the internet in FNAF:SB? find out on this weird ass website." property="og:description" />
+    <meta content="https://naomie.digital/fnaf" property="og:url" />
+    <meta content="https://naomie.digital/fnafsmashorpass.png" property="og:image" />
+    <meta content="#90EE90" data-react-helmet="true" name="theme-color" />
+    <style>
+        
+        body{
+            background-color: #505050;
+        }
+        #smashes{
+            text-align: center;
+            display:inline-block;
+            color:lightgreen;
+        }
+        #passes{
+            text-align: center;
+            display: inline-flex;
+            color:red;
+        }
+        #counter{margin-left:auto;margin-right:auto;text-align: center;}
+                #smashorpass{
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+        #smashorpasspic{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30vw;
+            height:auto;
+            padding-bottom: 10px;
+        }
+        #smashbutton{
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+            text-align: center;
+            background-color:lightgreen;
+            border:none;
+            border-radius: 15px;
+            font-size:2em;
+            padding:10px;
+        }
+        #passbutton{
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+            text-align: center;
+            text-align: center;
+            background-color:red;
+            border:none;
+            border-radius: 15px;
+            font-size:2em;
+            padding:10px;
+        }
+    
+    </style> 
+</head>
+<body>
+    <div id="counter">
+        <p id="smashes">0 smashes</p>
+        <p id="passes">0 passes</p>
+    </div>
+    <div id="smashorpass">
+        <img id="smashorpasspic" src="/fnafsmashorpass.png" alt="Smash or Pass">
+        <button id="smashbutton" onclick="smash()">Smash</button>
+        <button id="passbutton" onclick="pass()">Pass</button>
+    </div>
+</body>
+<script>
+    const canonical = {
+        "Chica":"chica.png",
+        "daycare_attendant":"daycare_attendant.png",
+        "Freddy Fazbear":"freddy.png",
+        "Map Bot":"map_bot.png",
+        "Monty":"monty.png",
+        "Roxanne":"roxy.png",
+        "security_bot":"security_bot.png",
+        "Vanessa":"vanessa.png",
+        "Vanny":"vanny.png",
+        "Wet Floor Bot":"wet_floor_bot.png",
+        "William Afton":"william_afton.png",
+    }
+    var copy = JSON.parse(JSON.stringify(canonical));
+    var smashes = 0;
+    var passes = 0;
+    function smash(){
+        newPic();
+        smashes++;
+        smashes == 1 ? document.getElementById("smashes").innerHTML = smashes + " smash" : document.getElementById("smashes").innerHTML = smashes + " smashes";
+    }
+    function pass(){
+        newPic();
+        passes++;
+        passes == 1 ? document.getElementById("passes").innerHTML = passes + " pass" : document.getElementById("passes").innerHTML = passes + " passes";
+    }
+    newPic();
+    function newPic(){
+        if (Object.keys(copy).length == 0) {
+            var img = document.getElementById("smashorpasspic");
+            console.log("No more pics");
+            img.src="/fnafsmashorpass.png";
+            document.getElementById("smashbutton").disabled = true;
+            document.getElementById("passbutton").disabled = true;
+        }else{
+            var rand = Math.floor(Math.random() * Object.keys(copy).length);
+            var key = Object.keys(copy)[rand];
+            var value = copy[key];
+            var img = document.getElementById("smashorpasspic");
+            img.src = "/fnaf/" + value;
+            delete copy[key];
+        }
+    }
+    
+
+</script>
+</html>
