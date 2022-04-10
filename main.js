@@ -9,6 +9,8 @@ const sqlite = require("better-sqlite3");
 nouns = require('./nouns.json');
 adjectives = require('./adjectives.json');
 adverbs = require('./adverbs.json');
+
+
 vowels = ['a','e','i','o','u'];
 // const http = require("http");
 //Create connections table if it doesn't exist
@@ -19,6 +21,8 @@ db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
 const path = require("path");
 app.use(express.static(__dirname + "/public"));
 app.get('/favicon.ico', express.static('favicon.ico'));
+
+
 
 app.get('/', function(req, res) {
     try{
@@ -79,7 +83,24 @@ app.get('/members', function(req, res) {
     }
     res.sendFile(path.join(__dirname, 'public/members.html'));
 });
-
+app.get('/fnaf', function(req, res) {
+    try{
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
+    res.sendFile(path.join(__dirname, 'public/fnaf.html'));
+});
+app.get('/pokenoms', function(req, res) {
+    try{
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now()); 
+    }
+    catch(err){
+        console.log(err);
+    }
+    res.sendFile(path.join(__dirname, 'public/pokenoms.html'));
+});
 
 function generateTitle(){
     adv = adverbs[Math.floor(Math.random() * adverbs.length)];
@@ -136,4 +157,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(4430);
+server.listen(443);

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat or Yeet</title>
+    <meta content="Pokemon Eat or Yeet" property="og:title" />
+    <meta
+        content="Pokemon are creatures horrifically contained within tiny balls made to fight each other, which would you eat?"
+        property="og:description" />
+    <meta content="https://naomie.digital/pokenoms" property="og:url" />
+    <meta content="https://naomie.digital/pokenom.png" property="og:image" />
+    <meta content="#90EE90" data-react-helmet="true" name="theme-color" />
+    <style>
+        body {
+            background-color: #505050;
+            overflow: hidden;
+        }
+
+        #Eats {
+            text-align: center;
+            display: inline-block;
+            color: lightgreen;
+        }
+
+        #Yeets {
+            text-align: center;
+            display: inline-flex;
+            color: red;
+        }
+
+        #counter {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        #eatoryeet {
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        #eatoryeetpic {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30vw;
+            height: auto;
+            padding-bottom: 10px;
+            image-rendering: pixelated;
+        }
+
+        #eatbutton {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 20vw;
+            text-align: center;
+            background-color: lightgreen;
+            border: none;
+            border-radius: 15px;
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        #yeetbutton {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 20vw;
+            text-align: center;
+            text-align: center;
+            background-color: red;
+            border: none;
+            border-radius: 15px;
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        #pacman-body {
+            margin: 0;
+            padding: 0;
+            display: none;
+            position: absolute;
+            width: 550px;
+            height: 550px;
+            border-radius: 100%;
+            background-color: yellow;
+            top: 1%;
+            left: 35%;
+            transform: rotate(90deg);
+        }
+        @media screen and (max-width: 1200px) {
+            #pacman-body {
+                width: 250px;
+                height: 250px;
+            }
+            #pacman-mouth {
+                width: 250px;
+                height: 250px;
+            }
+            #eatbutton
+            {
+                width:25vw;
+            }
+            #yeetbutton{
+                width:25vw;
+            }
+        }
+
+        #pacman-mouth {
+            margin: 0;
+            padding: 0;
+            display: none;
+            position: absolute;
+            width: 550px;
+            height: 550px;
+            border-radius: 100%;
+            background-color: black;
+            top: 1%;
+            left: 35%;
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+            animation: nom .25s infinite;
+            -moz-animation: nom .25s infinite;
+            -webkit-animation: nom .25s infinite;
+            -o-animation: nom .25s infinite;
+            transform: rotate(90deg);
+
+        }
+
+        #pacman-eye {
+            margin: 0;
+            padding: 0;
+            display: none;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 25%;
+            left: 65%;
+            background-color: black;
+        }
+
+        @keyframes nom {
+            0% {
+                clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+            }
+
+            25% {
+                clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+            }
+
+            50% {
+                clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+            }
+
+            75% {
+                clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+            }
+
+            100% {
+                clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pacman-body">
+        <div id="pacman-eye"></div>
+    </div>
+    <div id="pacman-mouth"></div>
+
+    <div id="counter">
+        <p id="Eats">0 Eats</p>
+        <p id="Yeets">0 Yeets</p>
+    </div>
+
+    <div id="eatoryeet">
+        <img id="eatoryeetpic" src="/pokenom.png" alt="Eat or Yeet">
+        <button id="eatbutton" onclick="eat()">Eat</button>
+        <button id="yeetbutton" onclick="yeet()">Yeet</button>
+    </div>
+</body>
+<script>
+    const canonical = [
+        "111.png",
+        "144.png",
+        "181.png",
+        "23.png",
+        "281.png",
+        "362.png",
+        "391.png",
+        "403.png",
+        "433.png",
+        "454.png",
+        "495.png",
+        "512.png",
+        "526.png",
+        "542.png",
+        "554.png",
+        "587.png",
+        "614.png",
+        "63.png",
+        "94.png", "112.png", "147.png",
+        "194.png",
+        "246.png",
+        "282.png",
+        "363.png",
+        "392.png",
+        "404.png",
+        "442.png",
+        "455.png",
+        "496.png",
+        "513.png",
+        "529.png",
+        "543.png",
+        "555.png",
+        "595.png",
+        "624.png",
+        "643.png",
+        "95.png", "123.png", "148.png",
+        "195.png",
+        "247.png",
+        "304.png",
+        "364.png",
+        "393.png",
+        "405.png",
+        "443.png",
+        "461.png",
+        "497.png",
+        "514.png",
+        "52.png",
+        "544.png",
+        "559.png",
+        "596.png",
+        "625.png",
+        "644.png", "129.png",
+        "149.png",
+        "196.png",
+        "248.png",
+        "305.png",
+        "365.png",
+        "394.png",
+        "40.png",
+        "444.png",
+        "464.png",
+        "498.png",
+        "515.png",
+        "530.png",
+        "545.png",
+        "560.png",
+        "5.png",
+        "627.png",
+        "64.png", "130.png", "150.png",
+        "197.png",
+        "24.png",
+        "306.png",
+        "374.png",
+        "395.png",
+        "410.png",
+        "445.png",
+        "470.png",
+        "499.png",
+        "516.png",
+        "531.png",
+        "546.png",
+        "570.png",
+        "607.png",
+        "628.png",
+        "65.png", "131.png",
+        "15.png",
+        "200.png",
+        "252.png",
+        "347.png",
+        "375.png",
+        "396.png",
+        "411.png",
+        "446.png",
+        "471.png",
+        "4.png",
+        "517.png",
+        "532.png",
+        "547.png",
+        "571.png",
+        "608.png",
+        "633.png",
+        "66.png",
+        "133.png",
+        "169.png",
+        "204.png",
+        "253.png",
+        "348.png",
+        "376.png",
+        "397.png",
+        "41.png",
+        "447.png",
+        "475.png",
+        "500.png",
+        "518.png",
+        "533.png",
+        "548.png",
+        "572.png",
+        "609.png",
+        "634.png",
+        "67.png",
+        "134.png",
+        "172.png",
+        "205.png",
+        "254.png",
+        "355.png",
+        "379.png",
+        "398.png",
+        "425.png",
+        "448.png",
+        "477.png",
+        "501.png",
+        "522.png",
+        "534.png",
+        "549.png",
+        "573.png",
+        "610.png",
+        "635.png",
+        "68.png",
+        "135.png",
+        "174.png",
+        "208.png",
+        "25.png",
+        " 356.png",
+        "383.png",
+        "399.png",
+        "426.png",
+        "451.png",
+        "478.png",
+        "502.png",
+        "523.png",
+        "53.png",
+        "551.png",
+        "574.png",
+        "611.png",
+        "636.png",
+        "6.png",
+        "136.png",
+        "179.png",
+        "212.png",
+        "26.png",
+        "358.png",
+        "384.png",
+        "39.png",
+        "429.png",
+        "452.png",
+        "483.png",
+        "503.png",
+        "524.png",
+        "540.png",
+        "552.png",
+        "575.png",
+        "612.png",
+        "637.png",
+        "92.png",
+        "143.png",
+        "180.png",
+        "215.png",
+        "280.png",
+        "361.png",
+        "390.png",
+        "400.png",
+        "42.png",
+        "453.png",
+        "493.png",
+        "511.png",
+        "525.png",
+        "541.png",
+        "553.png",
+        "576.png",
+        "613.png",
+        "639.png",
+        "93.png"
+    ]
+    var copy = JSON.parse(JSON.stringify(canonical));
+    var eats = 0;
+    var yeets = 0;
+    function sleep(s) {
+        return new Promise(resolve => setTimeout(resolve, s * 1000));
+    }
+    function eat() {
+        pic = document.getElementById("eatoryeetpic");
+        pacmanbody = document.getElementById("pacman-body");
+        pacmanmouth = document.getElementById("pacman-mouth");
+        pacmaneye = document.getElementById("pacman-eye");
+        pacmanbody.style.display = "block";
+        pacmanmouth.style.display = "block";
+        pacmaneye.style.display = "block";
+
+        pacmanbody.animate([
+            { transform: 'translate(0px, -1000px) rotate(90deg)', offset: 0 },
+            { transform: 'translate(0px, 0px) rotate(90deg)', offset: 0.5 },
+            { transform: 'translate(0px, 200px) rotate(90deg)', offset: 1 }
+        ], 1200)
+        pacmanmouth.animate([
+            { transform: 'translate(0px, -1000px) rotate(90deg)', offset: 0 },
+            { transform: 'translate(0px, 0px) rotate(90deg)', offset: 0.5 },
+            { transform: 'translate(0px, 200px) rotate(90deg)', offset: 1 }
+        ], 1200)
+
+        sleep(1).then(() => {
+            pacmanbody.style.display = "none";
+            pacmanmouth.style.display = "none";
+            pacmaneye.style.display = "none";
+
+            newPic();
+            eats++;
+            eats == 1 ? document.getElementById("Eats").innerHTML = eats + " eat" : document.getElementById("Eats").innerHTML = eats + " eats";
+        });
+    }
+    function yeet() {
+        pic = document.getElementById("eatoryeetpic");
+        pic.animate([
+            { transform: "translate(0px, 0px)", offset: 0 },
+            { transform: "translate(500px,-250px)", offset: 0.25 },
+            { transform: "translate(1000px,0px)", offset: 0.5 },
+            { transform: "translate(1500px,750px)", offset: 0.75 },
+            { transform: "translate(2000px, 1800px)", offset: 1 },
+        ], 1200);
+        sleep(1).then(() => {
+            pic.style.animation = "";
+            newPic();
+            yeets++;
+            yeets == 1 ? document.getElementById("Yeets").innerHTML = yeets + " yeets" : document.getElementById("Yeets").innerHTML = yeets + " yeets";
+        });
+    }
+    newPic();
+    function newPic() {
+        if (copy.length == 0) {
+            var img = document.getElementById("eatoryeetpic");
+            img.src = "/pokenom.png";
+            document.getElementById("eatbutton").disabled = true;
+            document.getElementById("yeetbutton").disabled = true;
+        } else {
+            var rand = Math.floor(Math.random() * copy.length);
+            var value = copy[rand];
+            if (value === undefined) {
+                newPic();
+                return;
+            }
+            var img = document.getElementById("eatoryeetpic");
+            img.src = "/poke/" + value;
+            delete copy[rand];
+        }
+    }
+
+
+</script>
+
+</html>
