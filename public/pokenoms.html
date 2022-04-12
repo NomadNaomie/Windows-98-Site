@@ -37,6 +37,7 @@
             text-align: center;
         }
 
+        
         #eatoryeet {
             margin: 0 auto;
             width: 100%;
@@ -57,7 +58,7 @@
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
-            width: 20vw;
+            width: 10vw;
             text-align: center;
             background-color: lightgreen;
             border: none;
@@ -70,7 +71,7 @@
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
-            width: 20vw;
+            width: 10vw;
             text-align: center;
             text-align: center;
             background-color: red;
@@ -92,23 +93,7 @@
             top: 1%;
             left: 35%;
             transform: rotate(90deg);
-        }
-        @media screen and (max-width: 1200px) {
-            #pacman-body {
-                width: 250px;
-                height: 250px;
-            }
-            #pacman-mouth {
-                width: 250px;
-                height: 250px;
-            }
-            #eatbutton
-            {
-                width:25vw;
-            }
-            #yeetbutton{
-                width:25vw;
-            }
+
         }
 
         #pacman-mouth {
@@ -144,6 +129,23 @@
             background-color: black;
         }
 
+                       @media screen and (max-width: 1200px) {
+            #pacman-body {
+                width: 250px;
+                height: 250px;
+            }
+            #pacman-mouth {
+                width: 250px;
+                height: 250px;
+            }
+            #eatbutton
+            {
+                width:25vw;
+            }
+            #yeetbutton{
+                width:25vw;
+            }
+        }
         @keyframes nom {
             0% {
                 clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
@@ -441,14 +443,10 @@
             document.getElementById("yeetbutton").disabled = true;
         } else {
             var rand = Math.floor(Math.random() * copy.length);
-            var value = copy[rand];
-            if (value === undefined) {
-                newPic();
-                return;
-            }
+            var value = copy.splice(rand,1);
             var img = document.getElementById("eatoryeetpic");
             img.src = "/poke/" + value;
-            delete copy[rand];
+            
         }
     }
 

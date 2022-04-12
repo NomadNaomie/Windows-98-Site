@@ -35,8 +35,8 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            width: 30vw;
-            height:auto;
+            width: 300px;
+            height:300px;
             padding-bottom: 10px;
         }
         #smashbutton{
@@ -79,19 +79,142 @@
     </div>
 </body>
 <script>
-    const canonical = {
-        "Chica":"chica.png",
-        "daycare_attendant":"daycare_attendant.png",
-        "Freddy Fazbear":"freddy.png",
-        "Map Bot":"map_bot.png",
-        "Monty":"monty.png",
-        "Roxanne":"roxy.png",
-        "security_bot":"security_bot.png",
-        "Vanessa":"vanessa.png",
-        "Vanny":"vanny.png",
-        "Wet Floor Bot":"wet_floor_bot.png",
-        "William Afton":"william_afton.png",
-    }
+    const canonical = ["AlienBot-Icon.png",
+"Alpine_ui_plushsuit_chica_scorching.png",
+"Alpine_ui_plushsuit_foxy_ringmaster.png",
+"Alpine_ui_plushsuit_mangle_magician.png",
+"Alpine_ui_plushsuit_radioactive_foxy.png",
+"Alpine_ui_plushsuit_springtrap_flaming-1.png",
+"Alpine_ui_plushsuit_toxic_springtrap.png",
+"Alpine_ui_plushsuit_toychica_catrina.png",
+"Alpine_ui_portrait_baby_stove.png",
+"Alpine_ui_shop_item_skin_springtrap_clown_skin.png",
+"AttendantBot-Icon.png",
+"BalloonBoy-Icon.png",
+"Ballora-Icon.png",
+"Bidybab-Icon.png",
+"Blob-Icon.png",
+"BonBon-Icon.png",
+"Bonnet-Icon.png",
+"Bonnie-Icon.png",
+"BurntFoxy-Icon.png",
+"Burntrap-Icon.png",
+"CandyCadet-Icon.png",
+"CaptainFoxy-Icon.png",
+"Chica-Icon.png",
+"ChocolateBonnie-ARIcon.png",
+"CircusBaby-Icon.png",
+"DarkFoxy-Icon.png",
+"DarkFreddy-Icon.png",
+"DaycareAttendantMoon-Icon.png",
+"DaycareAttendantSun-Icon.png",
+"DJMusicMan-Icon.png",
+"Dreadbear-Icon.png",
+"DriverAssistBot-Icon.png",
+"EasterBonnie-ARIcon.png",
+"EggBaby-Icon.png",
+"ElChip-Icon.png",
+"Electrobab-Icon.png",
+"Endo01-Icon.png",
+"Endo02-Icon.png",
+"Ennard-Icon.png",
+"Foxy-Icon.png",
+"Fredbear-Icon.png",
+"Freddles-Icon.png",
+"FreddyFazbear-Icon.png",
+"FuntimeChica-Icon.png",
+"FuntimeCupcake-Icon.png",
+"FuntimeFoxy-Icon.png",
+"FuntimeFreddy-Icon.png",
+"GlamrockBonnie-Icon.png",
+"GlamrockChica-Icon.png",
+"GlamrockEndo-Icon.png",
+"GlamrockFreddy-Icon.png",
+"GlamrockMrHippo-Icon.png",
+"Glitchtrap-Icon.png",
+"GoldenCupcake-Icon.png",
+"GoldenFreddy-Icon.png",
+"GreatEscapeFreddyPlushsuitIcon.png",
+"GrimmFoxy-Icon.png",
+"HappyFrog-Icon.png",
+"Helpy-Icon.png",
+"InstructorBot-Icon.png",
+"JackOBonnie-Icon.png",
+"JackOChica-Icon.png",
+"JJ-Icon.png",
+"Lefty-Icon.png",
+"LilMusicMan-Icon.png",
+"Lolbit-Icon.png",
+"Mangle-Icon.png",
+"MapBot-Icon.png",
+"MeltedChocolateBonniePlushsuitIcon.png",
+"Minireena-Icon.png",
+"MoltenFreddy-Icon.png",
+"MontgomeryGator-Icon.png",
+"MopBot-Icon.png",
+"MrCupcake-Icon.png",
+"MrHippo-Icon.png",
+"MusicMan-Icon.png",
+"NeddBear-Icon.png",
+"NeonBonnie-Icon.png",
+"NeonChica-Icon.png",
+"Nightmare-Icon.png",
+"NightmareBB-Icon.png",
+"NightmareBonnie-Icon.png",
+"NightmareChica-Icon.png",
+"NightmareCupcake-Icon.png",
+"NightmareEndo-Icon.png",
+"NightmareFoxy-Icon.png",
+"NightmareFredbear-Icon.png",
+"NightmareFreddy-Icon.png",
+"NightmareMangle-Icon.png",
+"NightmarionneBot-Icon.png",
+"Nightmarrione-Icon.png",
+"OrvilleElephant-Icon.png",
+"Parrot-Icon.png",
+"PartyBot-Icon.png",
+"PartyFreddy-Icon.png",
+"PhantomBalloonBoy-Icon.png",
+"PhantomChica-Icon.png",
+"PhantomFoxy-Icon.png",
+"PhantomFreddy-Icon.png",
+"PhantomMangle-Icon.png",
+"PhantomPuppet-Icon.png",
+"Pigpatch-Icon.png",
+"PizzaBot-Icon.png",
+"Plushtrap-Icon.png",
+"RockstarBonnie-Icon.png",
+"RockstarChica-Icon.png",
+"RockstarFoxy-Icon.png",
+"RockstarFreddy-Icon.png",
+"RoxanneWolf-Icon.png",
+"ScrapBaby-Icon.png",
+"Scraptrap-Icon.png",
+"SecurityBot-Icon.png",
+"SecurityPuppet-Icon.png",
+"ShadowBB-Icon.png",
+"ShadowBonnie-Icon.png",
+"ShadowCupcake-Icon.png",
+"ShadowFreddy-Icon.png",
+"ShadowMangle-Icon.png",
+"ShadowPuppet-Icon.png",
+"ShamrockFreddy-ARIcon.png",
+"SpringBonnie-Icon.png",
+"Springtrap-Icon.png",
+"ThePuppet-Icon.png",
+"TheScooper-Icon.png",
+"ToyBonnie-Icon.png",
+"ToyChica-Icon.png",
+"ToyCupcake-Icon.png",
+"ToyFreddy-Icon.png",
+"WetFloorBot-Icon.png",
+"WitheredBonnie-Icon.png",
+"WitheredChica-Icon.png",
+"WitheredFoxy-Icon.png",
+"WitheredFreddy-Icon.png",
+"WorkerBot-Icon.png",
+"XOR-Icon.png",
+"Yenndo-Icon.png"]
     var copy = JSON.parse(JSON.stringify(canonical));
     var smashes = 0;
     var passes = 0;
@@ -107,19 +230,17 @@
     }
     newPic();
     function newPic(){
-        if (Object.keys(copy).length == 0) {
+        if (copy.length == 0) {
             var img = document.getElementById("smashorpasspic");
             console.log("No more pics");
             img.src="/fnafsmashorpass.png";
             document.getElementById("smashbutton").disabled = true;
             document.getElementById("passbutton").disabled = true;
         }else{
-            var rand = Math.floor(Math.random() * Object.keys(copy).length);
-            var key = Object.keys(copy)[rand];
-            var value = copy[key];
+            var rand = Math.floor(Math.random() * copy.length);
+            var value = copy.splice(rand,1);
             var img = document.getElementById("smashorpasspic");
             img.src = "/fnaf/" + value;
-            delete copy[key];
         }
     }
     
