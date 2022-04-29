@@ -1,4 +1,4 @@
-const socket = new WebSocket('wss://' + window.location.hostname+":4430");
+const socket = new WebSocket('wss://' + window.location.hostname);
 
 
 /*
@@ -21,7 +21,7 @@ twitterClose = document.getElementById("twitter-close");
 twitterMin = document.getElementById("twitter-min");
 twitterBody = document.getElementById("tweet-body");
 
-//GiveSendGo
+//Finding Veexenia
 a2win = document.getElementById("a2win");
 a2close = document.getElementById("a2-close");
 a2min = document.getElementById("a2-min");

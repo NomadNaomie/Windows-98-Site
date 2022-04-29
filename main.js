@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/public"));
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 
-
+app.get("/secret-tone-indicator-roadmap",function(req,res){console.log("Booya");res.redirect("https://i.imgur.com/IhTpFJz.png")});
 app.get('/', function(req, res) {
     try{
         db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run(req.ip, req.path, Date.now());
@@ -83,6 +83,17 @@ app.get('/members', function(req, res) {
     }
     res.sendFile(path.join(__dirname, 'public/members.html'));
 });
+app.get("/beta", function(req,res){
+    res.sendFile(path.join(__dirname, 'public/beta.html'));
+});
+app.get("/game",function(req,res){
+    console.log("GAAAAAAAAAAAAAAAAAME");
+    res.sendFile(path.join(__dirname, 'public/game.html'));
+});
+app.get("/attribution",function(req,res){
+    console.log("Credits");
+    res.sendFile(path.join(__dirname, 'public/attribution.html'));
+});
 app.get('/fnaf', function(req, res) {
     try{
         db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
@@ -93,6 +104,7 @@ app.get('/fnaf', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/fnaf.html'));
 });
 app.get('/pokenoms', function(req, res) {
+    console.log("Pokenom "+new Date().toLocaleString());
     try{
         db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now()); 
     }

@@ -343,11 +343,11 @@ button.on{
     -o-filter: grayscale(0.87);
     -ms-filter: grayscale(0.87);
 }
-#givesendgo-btn{
+#finding-veexenia-btn{
     display: none;
     opacity: 0;
 }
-#a2-body:hover #givesendgo-btn{
+#a2-body:hover #finding-veexenia-btn{
     display: block;
     font-size: 20px;
     position: absolute;
