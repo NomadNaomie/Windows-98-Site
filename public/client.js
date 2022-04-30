@@ -21,7 +21,7 @@ twitterClose = document.getElementById("twitter-close");
 twitterMin = document.getElementById("twitter-min");
 twitterBody = document.getElementById("tweet-body");
 
-//Finding Veexenia
+//Finding Vee
 a2win = document.getElementById("a2win");
 a2close = document.getElementById("a2-close");
 a2min = document.getElementById("a2-min");
