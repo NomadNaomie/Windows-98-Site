@@ -1,0 +1,92 @@
+body{
+    background-color: #f2f2f2;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.game{
+    padding: 0%;
+    position: relative;
+    height: 152px;
+    background-color: darkgray;
+    width: 200px;
+    outline:1px solid black;
+    margin: 0 auto;
+    transform: scale(3) translateY(60%);
+}
+.Message{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:40px;
+    font-size: 8px;
+    background: lightgray;
+    border-top: 1px solid black;
+    color: black;
+}
+.Message p{
+    margin: 0;
+    padding: 0;
+}
+.Message button{
+    margin: 0;
+    padding: 0;
+    font-size:6px;
+    background: none;
+    border: 1px dotted black;
+    cursor: pointer;
+    position: absolute;
+    right: 2px;
+    bottom:2px;
+
+}
+#controls{
+    position:absolute;
+    bottom:0px;
+    text-align: center;
+    font-size: 14px;
+    color:black;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+#nameBtn{
+    background: none;
+    border: 1px solid black;
+    font-size: 8px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    top:20%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+#nameIn{
+    width:98%;
+    padding:0;
+    margin:0;
+}
+canvas{
+    image-rendering: optimizeSpeed;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+.title{
+    margin:0 auto -105px auto;
+    text-align: center;
+}
+.title h1{
+    font-family: 'Josefin Sans', sans-serif;
+}
+.title h3{
+    font-family: 'Send Flowers', cursive;
+    color:darkgray;
+    margin-top:-25px;
+    font-size: 2em;
+}

@@ -37,7 +37,7 @@
             text-align: center;
         }
 
-        
+
         #eatoryeet {
             margin: 0 auto;
             width: 100%;
@@ -48,7 +48,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            width: 30vw;
+            width: 20vw;
             height: auto;
             padding-bottom: 10px;
             image-rendering: pixelated;
@@ -65,6 +65,23 @@
             border-radius: 15px;
             font-size: 2em;
             padding: 10px;
+            box-shadow: 2px 10px black;
+
+        }
+
+        #eatbutton:active {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10vw;
+            text-align: center;
+            background-color: darkgreen;
+            border: none;
+            border-radius: 15px;
+            font-size: 2em;
+            padding: 10px;
+            transform: translateY(4px);
+            box-shadow: 2px 5px black;
         }
 
         #yeetbutton {
@@ -79,6 +96,24 @@
             border-radius: 15px;
             font-size: 2em;
             padding: 10px;
+
+            box-shadow: 2px 10px black;
+        }
+
+        #yeetbutton:active {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10vw;
+            text-align: center;
+            text-align: center;
+            background-color: darkred;
+            border: none;
+            border-radius: 15px;
+            font-size: 2em;
+            padding: 10px;
+            transform: translateY(4px);
+            box-shadow: 2px 5px black;
         }
 
         #pacman-body {
@@ -129,23 +164,26 @@
             background-color: black;
         }
 
-                       @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1200px) {
             #pacman-body {
                 width: 250px;
                 height: 250px;
             }
+
             #pacman-mouth {
                 width: 250px;
                 height: 250px;
             }
-            #eatbutton
-            {
-                width:25vw;
+
+            #eatbutton {
+                width: 25vw;
             }
-            #yeetbutton{
-                width:25vw;
+
+            #yeetbutton {
+                width: 25vw;
             }
         }
+
         @keyframes nom {
             0% {
                 clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
@@ -443,10 +481,10 @@
             document.getElementById("yeetbutton").disabled = true;
         } else {
             var rand = Math.floor(Math.random() * copy.length);
-            var value = copy.splice(rand,1);
+            var value = copy.splice(rand, 1);
             var img = document.getElementById("eatoryeetpic");
             img.src = "/poke/" + value;
-            
+
         }
     }
 
