@@ -15,22 +15,25 @@ vowels = ['a','e','i','o','u'];
 // const http = require("http");
 //Create connections table if it doesn't exist
 const db = new sqlite("./connections.db");
-db.prepare("CREATE TABLE IF NOT EXISTS connections (ip TEXT, page TEXT, time INTEGER)").run();
+db.prepare("CREATE TABLE IF NOT EXISTS connections (page TEXT, time INTEGER)").run();
 db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
+
 
 const path = require("path");
 app.use(express.static(__dirname + "/public"));
 app.get('/favicon.ico', express.static('favicon.ico'));
 
-
-app.get("/secret-tone-indicator-roadmap",function(req,res){console.log("Booya");res.redirect("https://i.imgur.com/IhTpFJz.png")});
-app.get('/', function(req, res) {
+app.use(function recordConnection(req, res, next) {
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run(req.ip, req.path, Date.now());
+        db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
     }
     catch(err){
         console.log(err);
     }
+    next();
+});
+
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -39,74 +42,41 @@ app.get('/hankgreenbooks', function(req, res) {
 });
 
 app.get('/parler', function(req, res) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
     res.sendFile(path.join(__dirname, 'public/parlerVideoData.html'));
 });
 app.get('/map', function(req, res) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
     res.sendFile(path.join(__dirname, 'public/map.html'));
 });
 app.get('/hearth', function(req, res) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+
     res.sendFile(path.join(__dirname, 'public/hearth.html'));
 });
 app.get('/valo',function(req,res){
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+
     res.sendFile(path.join(__dirname, 'public/valo.html'));
 });
 app.get('/members', function(req, res) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+
     res.sendFile(path.join(__dirname, 'public/members.html'));
 });
-app.get("/beta", function(req,res){
+app.get("/findingvee", function(req,res){
+
     res.sendFile(path.join(__dirname, 'public/beta.html'));
 });
 app.get("/game",function(req,res){
-    console.log("GAAAAAAAAAAAAAAAAAME");
     res.sendFile(path.join(__dirname, 'public/game.html'));
 });
 app.get("/attribution",function(req,res){
-    console.log("Credits");
     res.sendFile(path.join(__dirname, 'public/attribution.html'));
 });
 app.get('/fnaf', function(req, res) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+
     res.sendFile(path.join(__dirname, 'public/fnaf.html'));
 });
 app.get('/pokenoms', function(req, res) {
     console.log("Pokenom "+new Date().toLocaleString());
     try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.ip, req.path, Date.now()); 
+        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.path, Date.now()); 
     }
     catch(err){
         console.log(err);
@@ -169,4 +139,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(443);
+server.listen(4430);
