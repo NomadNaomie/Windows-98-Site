@@ -20,7 +20,6 @@ db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
 
 
 const path = require("path");
-app.use(express.static(__dirname + "/public"));
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.use(function recordConnection(req, res, next) {
@@ -32,11 +31,15 @@ app.use(function recordConnection(req, res, next) {
     }
     next();
 });
+app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
-
+app.get('/secret-tone-indicator-roadmap', function(req, res) {
+    console.log("Booya");
+    res.redirect("https://i.imgur.com/IhTpFJz.png")
+});
 app.get('/hankgreenbooks', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/hankgreen.html'));
 });
@@ -64,6 +67,7 @@ app.get("/findingvee", function(req,res){
     res.sendFile(path.join(__dirname, 'public/beta.html'));
 });
 app.get("/game",function(req,res){
+    console.log("Gamer");
     res.sendFile(path.join(__dirname, 'public/game.html'));
 });
 app.get("/attribution",function(req,res){
@@ -139,4 +143,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(4430);
+server.listen(443);

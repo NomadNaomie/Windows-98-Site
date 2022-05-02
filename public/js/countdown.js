@@ -20,6 +20,6 @@ var x = setInterval(function() {
         dateString += seconds + " seconds ";
     }
     dateString += "until the Black History Month Charity Event!";
-    document.getElementById("countdown").innerHTML = dateString;
+    // document.getElementById("countdown").innerHTML = dateString;
 
 }, 1000);
