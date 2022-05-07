@@ -5,8 +5,9 @@ const WebSocket = require('ws');
 const Twitter = require('twitter');
 const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
-const GeoguessrMaster = require("./GeoguessrMaster.js");
-// const sqlite = require("better-sqlite3");
+const gm = require("./GeoguessrMaster.js");
+let GeoguessrMaster = new gm();
+const sqlite = require("better-sqlite3");
 nouns = require('./nouns.json');
 adjectives = require('./adjectives.json');
 adverbs = require('./adverbs.json');
@@ -24,12 +25,12 @@ const path = require("path");
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.use(function recordConnection(req, res, next) {
-    // try{
-    //     db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
-    // }
-    // catch(err){
-    //     console.log(err);
-    // }
+    try{
+        db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
+    }
+    catch(err){
+        console.log(err);
+    }
     next();
 });
 app.use(express.static(__dirname + "/public"));
@@ -38,7 +39,6 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('/secret-tone-indicator-roadmap', function(req, res) {
-    console.log("Booya");
     res.redirect("https://i.imgur.com/IhTpFJz.png")
 });
 app.get('/hankgreenbooks', function(req, res) {
@@ -71,7 +71,6 @@ app.get("/findingvee", function(req,res){
 });
 
 app.get("/game",function(req,res){
-    console.log("Gamer");
     res.sendFile(path.join(__dirname, 'public/game.html'));
 });
 app.get("/attribution",function(req,res){
@@ -82,13 +81,6 @@ app.get('/fnaf', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/fnaf.html'));
 });
 app.get('/pokenoms', function(req, res) {
-    console.log("Pokenom "+new Date().toLocaleString());
-    // try{
-    //     db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.path, Date.now()); 
-    // }
-    // catch(err){
-    //     console.log(err);
-    // }
     res.sendFile(path.join(__dirname, 'public/pokenoms.html'));
 });
 
@@ -121,6 +113,7 @@ const server = http.createServer(options,app)
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
+    GeoguessrMaster.proc(ws);
     ws.on('message', function incoming(message) {
         data=JSON.parse(message);
         if(data.type=="title"){
@@ -147,4 +140,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(4430);
+server.listen(443);
