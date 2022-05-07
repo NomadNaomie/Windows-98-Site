@@ -1,0 +1,147 @@
+@font-face {
+    font-family : 'mc';
+    src: url('../font/mc.eot');
+    src: url('../font/mc.eot?#iefix') format('embedded-opentype'),
+        url('/font/mc.woff2') format('woff2'),
+        url('/font/mc.woff') format('woff'),
+        url('/font/mc.ttf') format('truetype'),
+        url('/font/mc.svg#MinecraftSeven') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+#footer{
+    clear: both;
+    text-align: center;
+    font-family: 'Azeret Mono', monospace;
+    color:white;
+    padding-top:2vh;
+
+}
+.mcbtn{
+    font-family: 'mc';
+    outline: 2px solid black;
+    position: relative;
+    margin: 0;
+    display: inline-block;
+    background-image: url('../../images/GeoGuessr/btnctn.png');
+    background-repeat: repeat;
+    text-align: center;
+    color: white;
+    border-bottom: 4px solid #565656;
+    border-right: 2px solid #565656;
+    border-left: 2px solid #AAA;
+    border-top: 2px solid #AAA;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.mcbtn:active{
+    transform: translateY(4px);
+}
+.mcbtn:hover {
+    border-bottom: 4px solid #59639A;
+    border-right: 2px solid #59639A;
+    border-left: 2px solid #BDC6FF;
+    border-top: 2px solid #BDC6FF;
+    background-image: url('../../images/GeoGuessr/btnact.png');
+    color: #FFFFA0;
+  }
+  .mcbtn-active {
+    border-bottom: 4px solid #59639A;
+    border-right: 2px solid #59639A;
+    border-left: 2px solid #BDC6FF;
+    border-top: 2px solid #BDC6FF;
+    background-image: url('../../images/GeoGuessr/btnact.png');
+    color: #FFFFA0;
+  }
+#panorama{
+    border-radius: 2%
+}
+#mcmap{
+    border-radius:2%;
+}
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+body{
+    background-image: url("../../images/GeoGuessr/sd2.webp");
+    background-attachment:fixed;
+    background-position-x: 50%;
+}
+#panorama {
+    width:auto;
+    height: 66vh;
+    float:left;
+}
+#winOrLose{
+    display:block;
+    position:absolute;
+    z-index: 10;
+    font-size: 1.5em;
+    font-family: 'Azeret Mono', monospace;
+    color:white;
+    padding:2vh;
+    background-color: rgba(0,0,0,0.7);
+    display:none;
+    text-align: left;
+}
+#map-ul a{
+    display:none;
+}
+#map-ul{
+    margin-bottom:2vh;}
+.dropdown-toggle:hover + #map-ul > a{
+    display:block;
+    background-color: #777;
+}
+.dropdown-toggle:active + #map-ul > a{
+    display:block;
+    background-color: #777;
+}
+#controls{
+    float:right;
+
+}
+#mcmap { height: 66vh;width:auto;margin:0;padding:0; }
+#s6btn{display:inline-block;margin-left:1vw;padding: .5vh 2vw;}
+#s7btn{display:inline-block;margin-left:1vw;padding: .5vh 2vw;}
+#submitBtn{display:inline-block;margin-left:1vw;padding: .5vh 2vw;}
+#audioBtn{display:inline-block;margin-left:1vw;padding: .5vh 2vw;}
+#attributions{display:inline-block;margin-left:1vw;padding: .5vh 2vw;}
+#title{
+    text-align: center;
+    font-family: 'Azeret Mono', monospace;
+    color:white;
+}
+#scores{
+    text-align-last: center;
+    float:left;
+    width:19vw;
+    margin:0;
+    padding:0;
+}
+#score{
+    font-family: 'Azeret Mono', monospace;
+    color:white;
+}
+ol{
+    list-style-type: none;
+    font-family: 'Azeret Mono', monospace;
+    color:white;
+    padding: 0;
+}
+#restart-game{
+    display:none;
+    width:8vw;
+    margin-left:auto;
+    margin-right:auto;
+    height:5vh;
+}
+#game{
+    display:grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-gap:2vw;
+}

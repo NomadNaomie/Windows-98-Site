@@ -1,4 +1,5 @@
-const socket = new WebSocket('wss://' + window.location.hostname);
+var socket;
+window.location.hostname == "localhost" ? socket = new WebSocket("wss://localhost:4430") : socket = new WebSocket('wss://' + window.location.hostname);
 
 
 /*

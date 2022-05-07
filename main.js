@@ -5,7 +5,8 @@ const WebSocket = require('ws');
 const Twitter = require('twitter');
 const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
-const sqlite = require("better-sqlite3");
+const GeoguessrMaster = require("./GeoguessrMaster.js");
+// const sqlite = require("better-sqlite3");
 nouns = require('./nouns.json');
 adjectives = require('./adjectives.json');
 adverbs = require('./adverbs.json');
@@ -14,21 +15,21 @@ adverbs = require('./adverbs.json');
 vowels = ['a','e','i','o','u'];
 // const http = require("http");
 //Create connections table if it doesn't exist
-const db = new sqlite("./connections.db");
-db.prepare("CREATE TABLE IF NOT EXISTS connections (page TEXT, time INTEGER)").run();
-db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
+// const db = new sqlite("./connections.db");
+// db.prepare("CREATE TABLE IF NOT EXISTS connections (page TEXT, time INTEGER)").run();
+// db.prepare('CREATE TABLE IF NOT EXISTS messages (message TEXT)').run();
 
 
 const path = require("path");
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.use(function recordConnection(req, res, next) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+    // try{
+    //     db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
+    // }
+    // catch(err){
+    //     console.log(err);
+    // }
     next();
 });
 app.use(express.static(__dirname + "/public"));
@@ -43,7 +44,9 @@ app.get('/secret-tone-indicator-roadmap', function(req, res) {
 app.get('/hankgreenbooks', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/hankgreen.html'));
 });
-
+app.get("/geoguessr", function(req, res) {
+    res.sendFile(path.join(__dirname, 'public/streetview.html'));
+});
 app.get('/parler', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/parlerVideoData.html'));
 });
@@ -66,6 +69,7 @@ app.get("/findingvee", function(req,res){
 
     res.sendFile(path.join(__dirname, 'public/beta.html'));
 });
+
 app.get("/game",function(req,res){
     console.log("Gamer");
     res.sendFile(path.join(__dirname, 'public/game.html'));
@@ -79,12 +83,12 @@ app.get('/fnaf', function(req, res) {
 });
 app.get('/pokenoms', function(req, res) {
     console.log("Pokenom "+new Date().toLocaleString());
-    try{
-        db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.path, Date.now()); 
-    }
-    catch(err){
-        console.log(err);
-    }
+    // try{
+    //     db.prepare("INSERT INTO connections VALUES (?, ?, ?)").run( req.path, Date.now()); 
+    // }
+    // catch(err){
+    //     console.log(err);
+    // }
     res.sendFile(path.join(__dirname, 'public/pokenoms.html'));
 });
 
@@ -123,7 +127,7 @@ wss.on('connection', function connection(ws) {
             newTitle = generateTitle();
             ws.send(JSON.stringify({type:"title",title:newTitle}));
         }else if (data.type=="anonymousMessage"){
-            db.prepare("INSERT INTO messages VALUES (?)").run(data.message);
+            // db.prepare("INSERT INTO messages VALUES (?)").run(data.message);
         }
     });
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
@@ -143,4 +147,4 @@ wss.on('connection', function connection(ws) {
 });
 
 
-server.listen(443);
+server.listen(4430);

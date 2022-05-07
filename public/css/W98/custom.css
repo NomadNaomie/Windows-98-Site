@@ -84,7 +84,7 @@ html, body {
 }
 
 #start-menu-controls button[aria-label=Start] {
-    background-image: url("starbutton.png");
+    background-image: url("/images/W98/start.png");
     background-size:contain;
     background-repeat: no-repeat;
     min-height: 4vh;
@@ -343,11 +343,11 @@ button.on{
     -o-filter: grayscale(0.87);
     -ms-filter: grayscale(0.87);
 }
-#finding-veexenia-btn{
+#finding-vee-btn{
     display: none;
     opacity: 0;
 }
-#a2-body:hover #finding-veexenia-btn{
+#a2-body:hover #finding-vee-btn{
     display: block;
     font-size: 20px;
     position: absolute;

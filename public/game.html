@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Vee</title>
+    <link rel="stylesheet" href="/css/FindingVee/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+                a{
+            color: rgb(95, 95, 95)
+        }
+    </style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Raleway&family=Send+Flowers&display=swap" rel="stylesheet"> </head>
+<body>
+    <div class="title"><h1>Finding Vee</h1><h3>By Nao</h3></div>
+    <div class="game" id="game">
+        <input type="text" value="" placeholder="What is your name?" id="nameIn">
+        <button id="nameBtn">Begin</button>
+        <canvas class="game-canvas" width="200" height="152">
+            
+        </canvas>
+    </div>
+    <div id="controls">
+        <p><a href="/attribution">Attributions</a></p>
+    </div>
+    <audio id="music">
+        <source src="/sounds/FindingVee/snowfall.ogg" type="audio/ogg">
+    </audio>
+    <script src="/js/FindingVee/InteractListener.js"></script>
+    <script src="/js/FindingVee/Fade.js"></script>
+    <script src="/js/FindingVee/Message.js"></script>
+    <script src="/js/FindingVee/utils.js"></script>
+    <script src="/js/FindingVee/Entity.js"></script>
+    <script src="/js/FindingVee/ComplexEntity.js"></script>
+    <script src="/js/FindingVee/HearthTown.js"></script>
+    <script src="/js/FindingVee/Controls.js"></script>
+    <script src="/js/FindingVee/SpriteMap.js"></script>
+    <script src="/js/FindingVee/Map.js"></script>
+    <script src="/js/FindingVee/Event.js"></script>
+    <script>
+        document.getElementById("nameBtn").addEventListener("click",function(){
+            document.getElementById("nameIn").style.display = "none";
+            document.getElementById("nameBtn").style.display = "none";
+            window.CharName = document.getElementById("nameIn").value;
+            (function (){
+            const hearthTown = new HearthTown({
+                element: document.querySelector('.game')
+            });
+            hearthTown.init();
+            })();
+        })
+    </script>
+</body>
+</html>

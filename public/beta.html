@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Vee</title>
+    <style>
+        body{
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+        #textbox{
+            width:50%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            margin-top: 10%;
+        }
+        #text{
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="textbox">
+        <p id="text">You're about to play a beta of an interactive experiencing called Finding Vee (Press Space to Continue)</p>
+    </div>
+</body>
+<script>
+    let text = document.getElementById("text");
+    let keyFlag = false;
+    document.addEventListener("keydown",function(e){
+        if (e.key == " " || e.key == "Enter"){
+            if (!keyFlag){
+                keyFlag = true;
+                if (lines.length > 0){
+                    text.animate([
+                        {opacity: "0"},
+                        {opacity: "0"},
+                        {opacity: "0.3"},
+                        {opacity: "1"}
+                    ],{
+                        duration: 2000,
+                        fill: "forwards"
+                    });
+                    text.innerHTML = lines.shift();
+                }
+                else{
+
+                    window.location.href = "/game";
+                }
+            }
+        }
+    })
+    document.addEventListener("keyup",function(e){
+        if (e.key == " " || e.key == "Enter"){
+            keyFlag = false;
+        }
+    })
+    lines = [
+        "There is a lot of polish missing from the game, nevertheless I hope you enjoy it.",
+        "Please note this game will not work on Mobile",
+        "You play as a fresh invitee to HearthSMP, after Vee has left Dani their departing note.",
+        "This is imagined as an epilogue to Season 1 of HearthSMP and a lead into Season 2, it does diverge from canon in some places. (Press Space to Begin)"
+    ]
+</script>
+</html>
