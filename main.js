@@ -7,11 +7,31 @@ const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
 const gm = require("./GeoguessrMaster.js");
 let GeoguessrMaster = new gm();
+const multer  = require('multer')
+const auth = require("./auth.json")
 const sqlite = require("better-sqlite3");
 nouns = require('./nouns.json');
 adjectives = require('./adjectives.json');
 adverbs = require('./adverbs.json');
 
+var uploadStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        var dir = './uploads';
+        if (req.body.uploadpass != auth.uploadpass) {
+            cb("Wrong password", null);
+            return;
+        }
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+        cb(null, dir);
+        
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+var upload = multer({storage: uploadStorage}).any();
 
 vowels = ['a','e','i','o','u'];
 // const http = require("http");
@@ -25,12 +45,12 @@ const path = require("path");
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.use(function recordConnection(req, res, next) {
-    try{
-        db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
-    }
-    catch(err){
-        console.log(err);
-    }
+    // try{
+    //     db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
+    // }
+    // catch(err){
+    //     console.log(err);
+    // }
     next();
 });
 app.use(express.static(__dirname + "/public"));
@@ -83,6 +103,18 @@ app.get('/fnaf', function(req, res) {
 app.get('/pokenoms', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/pokenoms.html'));
 });
+app.get("/upload", function(req, res) {
+    res.sendFile(path.join(__dirname, 'public/upload.html'));
+});
+
+app.post('/upload', function (req, res, next) {
+    upload(req, res, function (err) {
+        if (err) {
+            return res.send(err);
+        }
+        res.end("Upload completed.");
+    });
+})
 
 function generateTitle(){
     adv = adverbs[Math.floor(Math.random() * adverbs.length)];

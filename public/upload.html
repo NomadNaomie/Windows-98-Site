@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        input{
+            display: block;
+            margin:10px;
+            text-align: center;
+        }
+        #upload{
+            width: 25%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="upload">
+    <form id="uploadForm" action="/upload" enctype="multipart/form-data" method="post">
+        <input id="uploadFile" type="file" class="form-control-file" name="uploaded_file">
+        <input id="uploadpass" type="text" class="form-control" placeholder="Password" name="uploadpass">
+        <input id="uploadBtn" type="submit" value="Upload" class="btn btn-default">            
+    </form>
+    <p id="uploadStatus"></p>
+    </div>
+</body>
+<script>
+    var uploadForm = document.getElementById('uploadForm');
+    var uploadBtn = document.getElementById('uploadBtn');
+    var uploadStatus = document.getElementById('uploadStatus');
+    uploadBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append("uploadpass", document.getElementById('uploadpass').value);
+        formData.append("uploaded_file", document.getElementById('uploadFile').files[0]);
+        var request = new XMLHttpRequest();
+        request.open('POST', '/upload');
+        request.send(formData);
+        uploadStatus.innerHTML = 'Uploading...';
+        request.onload = function(){
+            uploadStatus.innerHTML = request.responseText;
+        }
+    });
+</script>
+</html>
