@@ -7,6 +7,8 @@ const http = require("https");
 const twitterAuth = require("./twitterAuth.json");
 const gm = require("./GeoguessrMaster.js");
 let GeoguessrMaster = new gm();
+const AdminHandler = require("./admin.js")
+let admin = new AdminHandler();
 const multer  = require('multer')
 const auth = require("./auth.json")
 const sqlite = require("better-sqlite3");
@@ -45,12 +47,7 @@ const path = require("path");
 app.get('/favicon.ico', express.static('favicon.ico'));
 
 app.use(function recordConnection(req, res, next) {
-    // try{
-    //     db.prepare("INSERT INTO connections VALUES (?,?)").run(req.path, Date.now());
-    // }
-    // catch(err){
-    //     console.log(err);
-    // }
+    admin.recordVisit(req)
     next();
 });
 app.use(express.static(__dirname + "/public"));
@@ -88,6 +85,10 @@ app.get('/members', function(req, res) {
 app.get("/findingvee", function(req,res){
 
     res.sendFile(path.join(__dirname, 'public/beta.html'));
+});
+app.get("/admin",function(req,res){
+    if (!req.query.hasOwnProperty("pass")){res.sendStatus(403)}
+    admin.isAdmin(req.query.pass) ? res.sendFile(path.join(__dirname,"admin.html")) : res.sendStatus(403)
 });
 
 app.get("/game",function(req,res){
@@ -148,6 +149,9 @@ wss.on('connection', function connection(ws) {
     GeoguessrMaster.proc(ws);
     ws.on('message', function incoming(message) {
         data=JSON.parse(message);
+        if (data.hasOwnProperty("admin")){
+            admin.handleWS(ws,data);
+        }
         if(data.type=="title"){
             newTitle = generateTitle();
             ws.send(JSON.stringify({type:"title",title:newTitle}));
@@ -171,5 +175,7 @@ wss.on('connection', function connection(ws) {
     });
 });
 
-
+setInterval(()=>{
+    admin.cycle()
+},1000);
 server.listen(443);
