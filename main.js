@@ -23,19 +23,19 @@ var uploadStorage = multer.diskStorage({
             cb("Wrong password", null);
             return;
         }
-        if (!fs.existsSync(dir)){
+        if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir);
         }
         cb(null, dir);
-        
+
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
     }
 });
-var upload = multer({storage: uploadStorage}).any();
+var upload = multer({ storage: uploadStorage }).any();
 
-vowels = ['a','e','i','o','u'];
+vowels = ['a', 'e', 'i', 'o', 'u'];
 // const http = require("http");
 //Create connections table if it doesn't exist
 // const db = new sqlite("./connections.db");
@@ -51,39 +51,44 @@ app.use(function recordConnection(req, res, next) {
     next();
 });
 app.use(express.static(__dirname + "/public"));
-
-app.get('/', function(req, res) {
+app.use(express.json())
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
-app.get('/secret-tone-indicator-roadmap', function(req, res) {
+app.get('/secret-tone-indicator-roadmap', function (req, res) {
     res.redirect("https://i.imgur.com/IhTpFJz.png")
 });
-app.get('/hankgreenbooks', function(req, res) {
+app.get('/hankgreenbooks', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/hankgreen.html'));
 });
-app.get("/geoguessr", function(req, res) {
-    res.sendFile(path.join(__dirname, 'public/streetview.html'));
+app.get("/geoguessr", function (req, res) {
+    if (req.body.params.hasOwnProperty("pass")) {
+        if (req.body.params.pass == auth.geopass) {
+            res.sendFile(path.join(__dirname, 'public/streetview.html'));
+        }else{
+            res.sendStatus(403);
+        }
+    }
 });
-app.get('/parler', function(req, res) {
+app.get("/public/streetview.html", function (req, res) {
+    res.sendStatus(403);
+});
+app.get('/parler', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/parlerVideoData.html'));
 });
-app.get('/map', function(req, res) {
+app.get('/map', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/map.html'));
 });
-app.get('/hearth', function(req, res) {
-
+app.get('/hearth', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/hearth.html'));
 });
-app.get('/valo',function(req,res){
-
+app.get('/valo', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/valo.html'));
 });
-app.get('/members', function(req, res) {
-
+app.get('/members', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/members.html'));
 });
-app.get("/findingvee", function(req,res){
-
+app.get("/findingvee", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/beta.html'));
 });
 app.get("/admin",function(req,res){
@@ -91,20 +96,20 @@ app.get("/admin",function(req,res){
     admin.isAdmin(req.query.pass) ? res.sendFile(path.join(__dirname,"admin.html")) : res.sendStatus(403)
 });
 
-app.get("/game",function(req,res){
+app.get("/game", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/game.html'));
 });
-app.get("/attribution",function(req,res){
+app.get("/attribution", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/attribution.html'));
 });
-app.get('/fnaf', function(req, res) {
+app.get('/fnaf', function (req, res) {
 
     res.sendFile(path.join(__dirname, 'public/fnaf.html'));
 });
-app.get('/pokenoms', function(req, res) {
+app.get('/pokenoms', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/pokenoms.html'));
 });
-app.get("/upload", function(req, res) {
+app.get("/upload", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/upload.html'));
 });
 
@@ -117,7 +122,7 @@ app.post('/upload', function (req, res, next) {
     });
 })
 
-function generateTitle(){
+function generateTitle() {
     adv = adverbs[Math.floor(Math.random() * adverbs.length)];
     adj = adjectives[Math.floor(Math.random() * adjectives.length)];
     adj = adj.charAt(0).toUpperCase() + adj.slice(1);
@@ -140,9 +145,9 @@ var params = { screen_name: 'nomadnaomie' };
 
 const cert = fs.readFileSync('./nao.pem');
 const key = fs.readFileSync('./nao.key');
-const options={cert:cert,key:key};
+const options = { cert: cert, key: key };
 // const server = http.createServer(app);
-const server = http.createServer(options,app)
+const server = http.createServer(options, app)
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
@@ -154,8 +159,8 @@ wss.on('connection', function connection(ws) {
         }
         if(data.type=="title"){
             newTitle = generateTitle();
-            ws.send(JSON.stringify({type:"title",title:newTitle}));
-        }else if (data.type=="anonymousMessage"){
+            ws.send(JSON.stringify({ type: "title", title: newTitle }));
+        } else if (data.type == "anonymousMessage") {
             // db.prepare("INSERT INTO messages VALUES (?)").run(data.message);
         }
     });
